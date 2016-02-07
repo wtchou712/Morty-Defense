@@ -3,7 +3,7 @@ using System.Collections;
 
 public class AllyUnitManager : MonoBehaviour {
 
-	private Vector3 _NextSpawnPoint = new Vector3 (-5, 0, 0);
+	private Vector3 _NextSpawnPoint = new Vector3 (-5, -0.4f, 0);
 	public GameObject Prefab;
 
 	public int gold; 
@@ -37,7 +37,7 @@ public class AllyUnitManager : MonoBehaviour {
 
 	private GameObject MakeRegularMorty() {
 		GameObject obj = GameObject.Instantiate (Prefab);
-		obj.transform.localScale = new Vector3 (-2, 2, 2);
+		obj.transform.localScale = new Vector3(-2, 2, 2);
 		return obj;
 	}
 

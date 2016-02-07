@@ -247,6 +247,7 @@ GameObject:
   - 33: {fileID: 586929172}
   - 65: {fileID: 586929171}
   - 23: {fileID: 586929170}
+  - 114: {fileID: 586929174}
   m_Layer: 0
   m_Name: Ground
   m_TagString: Untagged
@@ -311,6 +312,21 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 2
+--- !u!114 &586929174
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 586929169}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9765930584b1748adb3fdf31faad4114, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Prefab: {fileID: 180124, guid: a3dbb07d5df8b4521a05cf6a0adf40a3, type: 2}
+  gold: 0
+  SpawnDistance: 50
+  regularMortyCost: 10
 --- !u!1 &913032107
 GameObject:
   m_ObjectHideFlags: 0
