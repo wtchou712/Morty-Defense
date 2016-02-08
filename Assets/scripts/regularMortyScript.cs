@@ -11,6 +11,18 @@ public class regularMortyScript : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-		this.transform.Translate (new Vector3 (5f * Time.deltaTime, 0f, 0f));
+		this.transform.Translate (new Vector3 (1f * Time.deltaTime, 0f, 0f));
 	}
+
+    void OnCollisionEnter(Collision collision)
+    {
+
+        if (collision.collider.gameObject.name.Contains("flargo"))
+        {
+            Debug.Log("Morty attacked Flargo");
+            Destroy(collision.collider.gameObject);
+            Destroy(gameObject);
+        }
+    }
+    
 }
