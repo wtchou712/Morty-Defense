@@ -27,7 +27,7 @@ public class UnitManager : MonoBehaviour {
 		generateGold();
 
         spawnFlargoTime += Time.deltaTime;
-        SpawnFlargo();
+        spawnEnemy("flargo");
 
 		//if button pressed and gold greater > unit cost, spawn unit 
 		if (gold >= regularMortyCost) {
@@ -46,15 +46,24 @@ public class UnitManager : MonoBehaviour {
 		obj.transform.localScale = new Vector3(-1, 1, 1);
 		return obj;
 	}
-
-    private void SpawnFlargo(){
-        while (spawnFlargoTime > 2.0f)
+    
+    private void spawnEnemy(string enemyName)
+    {
+        if (enemyName == "flargo")
         {
-            spawnFlargoTime -= 2.0f;
-            var flargo = MakeFlargo();
-            flargo.transform.position = _EnemySpawnPoint;
+            while (spawnFlargoTime > 2.0f)
+            {
+                spawnFlargoTime -= 2.0f;
+                SpawnFlargo();
+            }
         }
-        
+        else { }
+    }
+
+    private void SpawnFlargo(){ 
+        var flargo = MakeFlargo();
+        flargo.transform.position = _EnemySpawnPoint;
+
     }
 
     private GameObject MakeFlargo()
@@ -72,6 +81,11 @@ public class UnitManager : MonoBehaviour {
 			Debug.Log ("gold amount: " + gold);
 		}
 	}
+
+    public void onClick()
+    {
+        Debug.Log("Spawn Morty Button Clicked");
+    }
 
 
 }
