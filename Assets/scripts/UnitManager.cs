@@ -9,7 +9,9 @@ public class UnitManager : MonoBehaviour {
 	public GameObject regularMortyPrefab;
     public GameObject flargoPrefab;
 
-	public int gold; 
+
+	//made gold a static variable 
+	public static int gold; 
 	public Text goldAmountText;
 	public float SpawnDistance = 50; 
 
@@ -21,7 +23,9 @@ public class UnitManager : MonoBehaviour {
 
 	// Use this for initialization
 	void Start () {
-
+		//intialize gold as 30 
+		gold = 30;
+		goldAmountText = GetComponent<Text> ();
 	}
 
 	
@@ -30,6 +34,8 @@ public class UnitManager : MonoBehaviour {
         goldGenTime += Time.deltaTime;
 		generateGold();
 
+		goldAmountText.text = "Gold Amount: " + gold.ToString ();
+		Debug.Log (goldAmountText);
         spawnFlargoTime += Time.deltaTime;
         spawnEnemy("flargo");
 
