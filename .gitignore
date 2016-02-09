@@ -1,17 +1,41 @@
-# Ignore Everything
-/*
+# Unity
+Temp/
+Obj/
+Library/
+UnityPlayer_Symbols.pdb
 
-# Except for these:
-!/.gitignore
-!/Assets
-!/Library
+# MonoDevelop user-specific
+*.userprefs
 
-Library/ScriptAssemblies/BuiltinAssemblies.stamp
+# Visual Studio build artifacts
+[Dd]ebug/
+[Rr]elease/
+x64/
+[Bb]in/
+[Oo]bj/
 
-Library/shadercompiler-UnityShaderCompiler.exe0.log
+# Visual Studio user-specific
+*.suo
+*.user
+*.sln.docstates
 
-Library/ScriptAssemblies/BuiltinAssemblies.stamp
+# Debug artifacts
+*.mdb
+*.mdb.meta
+*.pdb
+*.pdb.meta
 
-Library/ScriptAssemblies/BuiltinAssemblies.stamp
+# MSTest test Results
+[Tt]est[Rr]esult*/
+[Bb]uild[Ll]og.*
 
-Library/ScriptAssemblies/BuiltinAssemblies.stamp
+# OS metadata
+.DS_Store
+Thumbs.db
+Thumbs.db.meta
+Desktop.ini
+*~
+
+
+
+
