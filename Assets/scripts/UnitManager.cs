@@ -9,10 +9,9 @@ public class UnitManager : MonoBehaviour {
 	public GameObject regularMortyPrefab;
     public GameObject flargoPrefab;
 
-
 	//made gold a static variable 
 	public static int gold; 
-	public Text goldAmountText;
+	public Text goldText;
 	public float SpawnDistance = 50; 
 
 	public int regularMortyCost = 10;
@@ -23,9 +22,9 @@ public class UnitManager : MonoBehaviour {
 
 	// Use this for initialization
 	void Start () {
-		//intialize gold as 30 
 		gold = 30;
-		goldAmountText = GetComponent<Text> ();
+		goldText = GetComponent<Text> ();
+		UpdateGoldAmount ();
 	}
 
 	
@@ -34,10 +33,10 @@ public class UnitManager : MonoBehaviour {
         goldGenTime += Time.deltaTime;
 		generateGold();
 
-		goldAmountText.text = "Gold Amount: " + gold.ToString ();
-		Debug.Log (goldAmountText);
-        spawnFlargoTime += Time.deltaTime;
+		spawnFlargoTime += Time.deltaTime;
         spawnEnemy("flargo");
+
+		UpdateGoldAmount ();
 
 	}
 
@@ -91,12 +90,14 @@ public class UnitManager : MonoBehaviour {
     public void onClick()
     {
 		//if button pressed and gold greater > unit cost, spawn unit 
-        Debug.Log("Spawn Morty Button Clicked");
 		if (gold >= regularMortyCost) {
 			SpawnRegularMorty ();
 		}
     }
 
-
+	public void UpdateGoldAmount() {
+		goldText.text = "Gold Amount: " + gold.ToString ();
+	}
+		
 }
 	
