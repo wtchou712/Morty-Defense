@@ -23,6 +23,14 @@ public class regularMortyScript : MonoBehaviour {
             Destroy(collision.collider.gameObject);
             Destroy(gameObject);
         }
+
+		//When collided with enemy tower, enemy tower disappears for now 
+		if (collision.collider.gameObject.name.Contains("Enemy Tower"))
+		{
+			Debug.Log("Destroyed enemy tower!");
+			Destroy(collision.collider.gameObject);
+			Destroy(gameObject);
+		}
     }
     
 }
