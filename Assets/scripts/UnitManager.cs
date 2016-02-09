@@ -29,10 +29,10 @@ public class UnitManager : MonoBehaviour {
         spawnFlargoTime += Time.deltaTime;
         spawnEnemy("flargo");
 
-		//if button pressed and gold greater > unit cost, spawn unit 
-		if (gold >= regularMortyCost) {
-			SpawnRegularMorty ();
-		}
+//		//if button pressed and gold greater > unit cost, spawn unit 
+//		if (gold >= regularMortyCost) {
+//			SpawnRegularMorty ();
+//		}
 	}
 
 	private void SpawnRegularMorty(){
@@ -85,6 +85,9 @@ public class UnitManager : MonoBehaviour {
     public void onClick()
     {
         Debug.Log("Spawn Morty Button Clicked");
+		if (gold >= regularMortyCost) {
+			SpawnRegularMorty ();
+		}
     }
 
 
