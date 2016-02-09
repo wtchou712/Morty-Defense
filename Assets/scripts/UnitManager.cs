@@ -1,4 +1,5 @@
 ﻿using UnityEngine;
+using UnityEngine.UI;
 using System.Collections;
 
 public class UnitManager : MonoBehaviour {
@@ -9,6 +10,7 @@ public class UnitManager : MonoBehaviour {
     public GameObject flargoPrefab;
 
 	public int gold; 
+	public Text goldAmountText;
 	public float SpawnDistance = 50; 
 
 	public int regularMortyCost = 10;
@@ -16,10 +18,12 @@ public class UnitManager : MonoBehaviour {
 	double goldGenTime = 0;
     double spawnFlargoTime = 0; 
 
+
 	// Use this for initialization
 	void Start () {
-		
+
 	}
+
 	
 	// Update is called once per frame
 	void Update () {
@@ -29,10 +33,6 @@ public class UnitManager : MonoBehaviour {
         spawnFlargoTime += Time.deltaTime;
         spawnEnemy("flargo");
 
-//		//if button pressed and gold greater > unit cost, spawn unit 
-//		if (gold >= regularMortyCost) {
-//			SpawnRegularMorty ();
-//		}
 	}
 
 	private void SpawnRegularMorty(){
@@ -84,6 +84,7 @@ public class UnitManager : MonoBehaviour {
 
     public void onClick()
     {
+		//if button pressed and gold greater > unit cost, spawn unit 
         Debug.Log("Spawn Morty Button Clicked");
 		if (gold >= regularMortyCost) {
 			SpawnRegularMorty ();
