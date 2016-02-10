@@ -48,7 +48,7 @@ public class UnitManager : MonoBehaviour {
 
 	private GameObject MakeRegularMorty() {
 		GameObject obj = GameObject.Instantiate (regularMortyPrefab);
-		obj.transform.localScale = new Vector3(-1, 1, 1);
+		obj.transform.localScale = new Vector3(-0.5f, 0.5f, 0.5f);
 		return obj;
 	}
     
@@ -74,7 +74,7 @@ public class UnitManager : MonoBehaviour {
     private GameObject MakeFlargo()
     {
         GameObject obj = GameObject.Instantiate(flargoPrefab);
-        obj.transform.localScale = new Vector3(1, 1, 1);
+        obj.transform.localScale = new Vector3(0.5f, 0.5f, 0.5f);
         Debug.Log("Spawning Object: " + obj.name);
         return obj;
     }
@@ -87,7 +87,7 @@ public class UnitManager : MonoBehaviour {
 		}
 	}
 
-    public void onClick()
+    public void onClick()//button for spawning regular morty
     {
 		//if button pressed and gold greater > unit cost, spawn unit 
 		if (gold >= regularMortyCost) {
