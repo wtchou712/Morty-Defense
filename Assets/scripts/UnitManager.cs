@@ -42,7 +42,7 @@ public class UnitManager : MonoBehaviour {
 
 	private void SpawnRegularMorty(){
 		var regularMorty = MakeRegularMorty ();
-		regularMorty.transform.position = _AllySpawnPoint;
+		regularMorty.transform.position = new Vector3(-5, Random.Range(-3.8f, -4.2f), 0);
 		gold -= regularMortyCost;
 	}
 
@@ -67,7 +67,7 @@ public class UnitManager : MonoBehaviour {
 
     private void SpawnFlargo(){ 
         var flargo = MakeFlargo();
-        flargo.transform.position = _EnemySpawnPoint;
+		flargo.transform.position = new Vector3(5, Random.Range(-3.8f, -4.2f), 0);
 
     }
 
