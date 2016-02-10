@@ -15,10 +15,10 @@ public class flargoScript : MonoBehaviour {
 
 	void OnCollisionEnter(Collision collision)
 	{
-
+		//When collided with ally tower, ally tower disappears for now 
 		if (collision.collider.gameObject.name.Contains("Ally Tower"))
 		{
-			Debug.Log("Flargo attacked Morty");
+			Debug.Log("Flargo destroyed ally tower");
 			Destroy(collision.collider.gameObject);
 			Destroy(gameObject);
 		}
