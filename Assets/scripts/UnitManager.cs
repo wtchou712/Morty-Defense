@@ -4,8 +4,8 @@ using System.Collections;
 
 public class UnitManager : MonoBehaviour {
 
-	private Vector3 _AllySpawnPoint = new Vector3 (-5, -0.95f, 0);
-    private Vector3 _EnemySpawnPoint = new Vector3(5, -0.915f, 0);
+	private Vector3 _AllySpawnPoint = new Vector3 (-5, -3.8f, 0);
+    private Vector3 _EnemySpawnPoint = new Vector3(5, -3.8f, 0);
 	public GameObject regularMortyPrefab;
     public GameObject flargoPrefab;
 
@@ -23,8 +23,8 @@ public class UnitManager : MonoBehaviour {
 	// Use this for initialization
 	void Start () {
 		gold = 30;
-		goldText = GetComponent<Text> ();
-		UpdateGoldAmount ();
+		//goldText = GetComponent<Text> ();
+		//UpdateGoldAmount ();
 	}
 
 	
@@ -87,8 +87,9 @@ public class UnitManager : MonoBehaviour {
 		}
 	}
 
-    public void onClick()//button for spawning regular morty
+    public void regularMortyClick()//button for spawning regular morty
     {
+		Debug.Log ("SPAWN MORTY BITCH");
 		//if button pressed and gold greater > unit cost, spawn unit 
 		if (gold >= regularMortyCost) {
 			SpawnRegularMorty ();
