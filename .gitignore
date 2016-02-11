@@ -3,6 +3,7 @@ Temp/
 Obj/
 Library/
 UnityPlayer_Symbols.pdb
+Assembly-CSharp.csproj
 
 # MonoDevelop user-specific
 *.userprefs
@@ -18,6 +19,7 @@ x64/
 *.suo
 *.user
 *.sln.docstates
+
 
 # Debug artifacts
 *.mdb
