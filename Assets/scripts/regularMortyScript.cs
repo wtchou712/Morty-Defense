@@ -2,7 +2,7 @@
 using System.Collections;
 
 public class regularMortyScript : MonoBehaviour {
-
+	public EnemyTowerScript tempScript;
 
 	// Use this for initialization
 	void Start () {
@@ -27,8 +27,9 @@ public class regularMortyScript : MonoBehaviour {
 		//When collided with enemy tower, enemy tower disappears for now 
 		if (collision.collider.gameObject.name.Contains("Enemy Tower"))
 		{
-			Debug.Log("Destroyed enemy tower!");
-			Destroy(collision.collider.gameObject);
+			tempScript = collision.collider.gameObject.GetComponent<EnemyTowerScript>();
+			tempScript.decreaseHealth(5f);
+			Debug.Log("Attacked enemy tower!");
 			Destroy(gameObject);
 		}
     }
