@@ -4,10 +4,9 @@ using System.Collections;
 
 public class UnitManager : MonoBehaviour {
 
-	private Vector3 _AllySpawnPoint = new Vector3 (-5, -3.8f, 0);
-    private Vector3 _EnemySpawnPoint = new Vector3(5, -3.8f, 0);
 	public GameObject regularMortyPrefab;
     public GameObject flargoPrefab;
+	public GameObject frozenMortyPrefab;
 
 	//made gold a static variable 
 	public static int gold; 
@@ -15,6 +14,7 @@ public class UnitManager : MonoBehaviour {
 	public float SpawnDistance = 50; 
 
 	public int regularMortyCost = 10;
+	public int frozenMortyCost = 20;
 
 	double goldGenTime = 0;
     double spawnFlargoTime = 0; 
@@ -23,8 +23,6 @@ public class UnitManager : MonoBehaviour {
 	// Use this for initialization
 	void Start () {
 		gold = 30;
-		//goldText = GetComponent<Text> ();
-		//UpdateGoldAmount ();
 	}
 
 	
@@ -41,24 +39,27 @@ public class UnitManager : MonoBehaviour {
 	}
 
 	private void SpawnRegularMorty(){
-		var regularMorty = MakeRegularMorty ();
-		regularMorty.transform.position = new Vector3(-5, Random.Range(-3.8f, -4.2f), 0);
+		GameObject regularMorty = GameObject.Instantiate (regularMortyPrefab);
+		regularMorty.transform.localScale = new Vector3(-0.5f, 0.5f, 0.5f);
+		regularMorty.transform.position = new Vector3(-7, Random.Range(-3.8f, -4.2f), 0);
 		gold -= regularMortyCost;
 	}
 
-	private GameObject MakeRegularMorty() {
-		GameObject obj = GameObject.Instantiate (regularMortyPrefab);
-		obj.transform.localScale = new Vector3(-0.5f, 0.5f, 0.5f);
-		return obj;
+	private void SpawnFrozenMorty(){
+		GameObject frozenMorty = GameObject.Instantiate (frozenMortyPrefab);
+		frozenMorty.transform.localScale = new Vector3 (-0.5f, 0.5f, 0.5f);
+		frozenMorty.transform.position = new Vector3 (-7, Random.Range (-3.8f, -4.2f), 0);
+		gold -= frozenMortyCost;
 	}
+		
     
     private void spawnEnemy(string enemyName)
     {
         if (enemyName == "flargo")
         {
-            while (spawnFlargoTime > 2.0f)
+            while (spawnFlargoTime > 4.0f)
             {
-                spawnFlargoTime -= 2.0f;
+                spawnFlargoTime -= 4.0f;
                 SpawnFlargo();
             }
         }
@@ -66,18 +67,12 @@ public class UnitManager : MonoBehaviour {
     }
 
     private void SpawnFlargo(){ 
-        var flargo = MakeFlargo();
-		flargo.transform.position = new Vector3(5, Random.Range(-3.8f, -4.2f), 0);
-
+		GameObject flargo = GameObject.Instantiate(flargoPrefab);
+		flargo.transform.localScale = new Vector3(0.5f, 0.5f, 0.5f);
+		flargo.transform.position = new Vector3(7, Random.Range(-3.8f, -4.2f), 0);
+		Debug.Log("Spawning Object: " + flargo.name);
     }
-
-    private GameObject MakeFlargo()
-    {
-        GameObject obj = GameObject.Instantiate(flargoPrefab);
-        obj.transform.localScale = new Vector3(0.5f, 0.5f, 0.5f);
-        Debug.Log("Spawning Object: " + obj.name);
-        return obj;
-    }
+		
 
 	private void generateGold() { 
 		while (goldGenTime > 1.0f) {
@@ -89,12 +84,19 @@ public class UnitManager : MonoBehaviour {
 
     public void regularMortyClick()//button for spawning regular morty
     {
-		Debug.Log ("SPAWN MORTY BITCH");
+		Debug.Log ("Spawn Regular Morty");
 		//if button pressed and gold greater > unit cost, spawn unit 
 		if (gold >= regularMortyCost) {
 			SpawnRegularMorty ();
 		}
     }
+
+	public void frozenMortyClick(){
+		Debug.Log ("Spawn Frozen Morty");
+		if (gold >= frozenMortyCost){
+			SpawnFrozenMorty ();
+		}
+	}
 
 	public void UpdateGoldAmount() {
 		goldText.text = "Gold Amount: " + gold.ToString ();
