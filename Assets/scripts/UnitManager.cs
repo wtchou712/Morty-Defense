@@ -7,6 +7,8 @@ public class UnitManager : MonoBehaviour {
 	public GameObject regularMortyPrefab;
     public GameObject flargoPrefab;
 	public GameObject frozenMortyPrefab;
+	public GameObject karateMortyPrefab;
+	public GameObject praxPrefab;
 
 	//made gold a static variable 
 	public static int gold; 
@@ -15,9 +17,11 @@ public class UnitManager : MonoBehaviour {
 
 	public int regularMortyCost = 10;
 	public int frozenMortyCost = 20;
+	public int karateMortyCost = 30;
 
 	double goldGenTime = 0;
     double spawnFlargoTime = 0; 
+	double spawnPraxTime = 0; 
 
 
 	// Use this for initialization
@@ -32,7 +36,8 @@ public class UnitManager : MonoBehaviour {
 		generateGold();
 
 		spawnFlargoTime += Time.deltaTime;
-        spawnEnemy("flargo");
+		spawnPraxTime += Time.deltaTime;
+        spawnEnemy();
 
 		UpdateGoldAmount ();
 
@@ -51,18 +56,27 @@ public class UnitManager : MonoBehaviour {
 		frozenMorty.transform.position = new Vector3 (-7, Random.Range (-3.8f, -4.2f), 0);
 		gold -= frozenMortyCost;
 	}
+
+	private void SpawnKarateMorty(){
+		GameObject karateMorty = GameObject.Instantiate (karateMortyPrefab);
+		karateMorty.transform.localScale = new Vector3 (-0.5f, 0.5f, 0.5f);
+		karateMorty.transform.position = new Vector3 (-7, Random.Range (-3.8f, -4.2f), 0);
+		gold -= karateMortyCost;
+	}
 		
     
-    private void spawnEnemy(string enemyName)
+    private void spawnEnemy()
     {
-        if (enemyName == "flargo")
-        {
-            while (spawnFlargoTime > 4.0f)
-            {
-                spawnFlargoTime -= 4.0f;
-                SpawnFlargo();
-            }
-        }
+	    if (spawnFlargoTime > 3.0f)
+	    {
+	        spawnFlargoTime -= 3.0f;
+	        SpawnFlargo();
+	    }
+		if (spawnPraxTime > 5.0f) {
+			spawnPraxTime -= 5.0f;
+			SpawnPrax ();
+		}
+
         else { }
     }
 
@@ -72,6 +86,13 @@ public class UnitManager : MonoBehaviour {
 		flargo.transform.position = new Vector3(7, Random.Range(-3.8f, -4.2f), 0);
 		Debug.Log("Spawning Object: " + flargo.name);
     }
+
+	private void SpawnPrax(){ 
+		GameObject prax = GameObject.Instantiate(praxPrefab);
+		prax.transform.localScale = new Vector3(0.5f, 0.5f, 0.5f);
+		prax.transform.position = new Vector3(7, Random.Range(-3.8f, -4.2f), 0);
+		Debug.Log("Spawning Object: " + prax.name);
+	}
 		
 
 	private void generateGold() { 
@@ -98,6 +119,12 @@ public class UnitManager : MonoBehaviour {
 		}
 	}
 
+	public void karateMortyClick(){
+		Debug.Log ("Spawn Karate Morty");
+		if (gold >= karateMortyCost){
+			SpawnKarateMorty ();
+		}
+	}
 	public void UpdateGoldAmount() {
 		goldText.text = "Gold Amount: " + gold.ToString ();
 	}
