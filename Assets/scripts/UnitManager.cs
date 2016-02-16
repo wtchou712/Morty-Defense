@@ -128,6 +128,11 @@ public class UnitManager : MonoBehaviour {
 	public void UpdateGoldAmount() {
 		goldText.text = "Gold Amount: " + gold.ToString ();
 	}
+
+	public void rewardGold(int goldReward){
+		gold += goldReward;
+		Debug.Log ("gold rewarded : " + goldReward);
+	}
 		
 }
 	
