@@ -83,7 +83,7 @@ public class UnitManager : MonoBehaviour {
 		while (goldGenTime > 1.0f) {
             goldGenTime -= 1.0f; 
 			gold += 5; 
-			Debug.Log ("gold amount: " + gold);
+//			Debug.Log ("gold amount: " + gold);
 		}
 	}
 

@@ -2,10 +2,11 @@
 using System.Collections;
 
 public class flargoScript : MonoBehaviour {
-
+	//public AllyTowerScript tempScript = gameObject.AddComponent<AllyTowerScript>();
+	public AllyTowerScript tempScript;
 	// Use this for initialization
 	void Start () {
-	
+
 	}
 	
 	// Update is called once per frame
@@ -18,8 +19,10 @@ public class flargoScript : MonoBehaviour {
 		//When collided with ally tower, ally tower disappears for now 
 		if (collision.collider.gameObject.name.Contains("Ally Tower"))
 		{
-			Debug.Log("Flargo destroyed ally tower");
-			Destroy(collision.collider.gameObject);
+			//Debug.Log ("collision here");
+			tempScript = collision.collider.gameObject.GetComponent<AllyTowerScript>();
+			tempScript.decreaseHealth(5f);
+			//Debug.Log("Flargo destroyed ally tower");
 			Destroy(gameObject);
 		}
 	}

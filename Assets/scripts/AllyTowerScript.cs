@@ -7,11 +7,10 @@ public class AllyTowerScript : MonoBehaviour {
 	public float currentHealth = 0f;
 	public GameObject healthBar;
 
-
 	// Use this for initialization
 	void Start () {
 		currentHealth = maxHealth;
-		InvokeRepeating ("decreaseHealth", 1f, 1f);
+//		InvokeRepeating ("decreaseHealth", 1f, 1f);
 	}
 	
 	// Update is called once per frame
@@ -19,14 +18,17 @@ public class AllyTowerScript : MonoBehaviour {
 	
 	}
 
-	void decreaseHealth(){
-		currentHealth -= 2f;
+	public void decreaseHealth(float healthLost){
+		Debug.Log ("decreased HP");
+		currentHealth -= healthLost;
+		if (currentHealth <= 0) {
+			Destroy (gameObject);
+		}
 		float calculatedHealth = currentHealth / maxHealth;
 		setHealthBar (calculatedHealth);
 	}
 
 	public void setHealthBar(float myHealth){
-		
 		healthBar.transform.localScale = new Vector3(myHealth, healthBar.transform.localScale.y, healthBar.transform.localScale.z);
 	}
 }
