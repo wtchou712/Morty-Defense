@@ -4,6 +4,9 @@ using System.Collections;
 public class flargoScript : MonoBehaviour {
 	//public AllyTowerScript tempScript = gameObject.AddComponent<AllyTowerScript>();
 	public AllyTowerScript tempScript;
+
+	public int current_health = 30;
+	public int damage = 10;
 	// Use this for initialization
 	void Start () {
 

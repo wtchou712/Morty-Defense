@@ -4,6 +4,10 @@ using System.Collections;
 public class frozenMortyScript : MonoBehaviour {
 	public EnemyTowerScript tempScript;
 	public UnitManager unitManagerScript;
+	public flargoScript flargoObj;
+
+	public int current_health = 40;
+	public int damage = 10;
 
 	// Use this for initialization
 	void Start () {
@@ -19,19 +23,25 @@ public class frozenMortyScript : MonoBehaviour {
 	{
 		if (collision.gameObject.tag == "Ally") {
 			Physics.IgnoreCollision (GetComponent<Collider>(), collision.collider);
-			Debug.Log ("Ally collision ignored");
 		}
 		if (collision.gameObject.tag == "Enemy")
 		{
 			if (collision.collider.gameObject.name.Contains("flargo")) {
-				Debug.Log("Morty attacked Flargo");
-				Destroy(collision.collider.gameObject);
-				Destroy(gameObject);
+				flargoObj = collision.collider.gameObject.GetComponent<flargoScript>();
+				flargoObj.current_health -= damage;
+				current_health -= flargoObj.damage;
+				flargoObj.transform.position += new Vector3 (0.5f, 0f, 0f);
+				this.transform.position += new Vector3 (-0.5f, 0f, 0f);
+				Dead ();
+
+				if (flargoObj.current_health <= 0) {
+					Debug.Log ("flargoObj dead");
+					Destroy(collision.collider.gameObject);
+				}
 				unitManagerScript.rewardGold (7);
 			}
 			if (collision.collider.gameObject.name.Contains("prax"))
 			{
-				Debug.Log("Morty attacked Prax");
 				Destroy(collision.collider.gameObject);
 				Destroy(gameObject);
 				unitManagerScript.rewardGold (12);
@@ -44,6 +54,12 @@ public class frozenMortyScript : MonoBehaviour {
 			tempScript.decreaseHealth(5f);
 			Debug.Log("Attacked enemy tower!");
 			Destroy(gameObject);
+		}
+	}
+
+	void Dead() {
+		if (current_health <= 0) {
+			Destroy (gameObject);
 		}
 	}
 }
