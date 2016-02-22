@@ -23,10 +23,15 @@ public class UnitManager : MonoBehaviour {
     double spawnFlargoTime = 0; 
 	double spawnPraxTime = 0; 
 
+	public int currentWave = 1; 
+	public Text waveText; 
+	public int enemySpawnCount=0;
+
 
 	// Use this for initialization
 	void Start () {
 		gold = 30;
+		waveText.enabled = false;
 	}
 
 	
@@ -76,8 +81,8 @@ public class UnitManager : MonoBehaviour {
 			spawnPraxTime -= 5.0f;
 			SpawnPrax ();
 		}
-
         else { }
+		enemySpawnCount++;
     }
 
     private void SpawnFlargo(){ 
@@ -132,6 +137,18 @@ public class UnitManager : MonoBehaviour {
 	public void rewardGold(int goldReward){
 		gold += goldReward;
 		Debug.Log ("gold rewarded : " + goldReward);
+	}
+
+	public void waveComplete(){
+		waveText.text = "Wave " + currentWave + " Completed";
+		StartCoroutine (displayWaveComplete ());
+		currentWave++; 
+	}
+
+	IEnumerator displayWaveComplete(){
+		waveText.enabled = true;	
+		yield return new WaitForSeconds (3);
+		waveText.enabled = false; 
 	}
 		
 }

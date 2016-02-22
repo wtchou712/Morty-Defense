@@ -2,6 +2,7 @@
 using System.Collections;
 
 public class EnemyTowerScript : MonoBehaviour {
+	public UnitManager unitManagerScript;
 
 	public float maxHealth = 100f;
 	public float currentHealth = 0f;
@@ -10,6 +11,8 @@ public class EnemyTowerScript : MonoBehaviour {
 	// Use this for initialization
 	void Start () {
 		currentHealth = maxHealth;
+		unitManagerScript = Camera.main.GetComponent<UnitManager>();
+
 	}
 
 	// Update is called once per frame
@@ -21,6 +24,7 @@ public class EnemyTowerScript : MonoBehaviour {
 		Debug.Log ("decreased HP");
 		currentHealth -= healthLost;
 		if (currentHealth <= 0) {
+			unitManagerScript.waveComplete ();
 			Destroy (gameObject);
 		}
 		float calculatedHealth = currentHealth / maxHealth;
