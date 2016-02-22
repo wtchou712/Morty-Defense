@@ -5,6 +5,7 @@ public class frozenMortyScript : MonoBehaviour {
 	public EnemyTowerScript tempScript;
 	public UnitManager unitManagerScript;
 	public flargoScript flargoObj;
+	public praxScript praxObj;
 
 	public int current_health = 40;
 	public int damage = 10;
@@ -35,15 +36,17 @@ public class frozenMortyScript : MonoBehaviour {
 				Dead ();
 
 				if (flargoObj.current_health <= 0) {
-					Debug.Log ("flargoObj dead");
 					Destroy(collision.collider.gameObject);
 				}
 				unitManagerScript.rewardGold (7);
 			}
 			if (collision.collider.gameObject.name.Contains("prax"))
 			{
-				Destroy(collision.collider.gameObject);
-				Destroy(gameObject);
+				praxObj = collision.collider.gameObject.GetComponent<praxScript>();
+				praxObj.current_health -= damage;
+				current_health -= praxObj.damage;
+				praxObj.transform.position += new Vector3 (0.5f, 0f, 0f);
+				this.transform.position += new Vector3 (-0.5f, 0f, 0f);
 				unitManagerScript.rewardGold (12);
 			}
 		}

@@ -4,6 +4,11 @@ using System.Collections;
 public class karateMortyScript : MonoBehaviour {
 	public EnemyTowerScript tempScript;
 	public UnitManager unitManagerScript;
+	public flargoScript flargoObj;
+	public praxScript praxObj;
+
+	public int current_health = 30;
+	public int damage = 30;
 
 	// Use this for initialization
 	void Start () {
@@ -24,16 +29,25 @@ public class karateMortyScript : MonoBehaviour {
 		if (collision.gameObject.tag == "Enemy")
 		{
 			if (collision.collider.gameObject.name.Contains("flargo")) {
-				Debug.Log("Morty attacked Flargo");
-				Destroy(collision.collider.gameObject);
-				Destroy(gameObject);
+				flargoObj = collision.collider.gameObject.GetComponent<flargoScript>();
+				flargoObj.current_health -= damage;
+				current_health -= flargoObj.damage;
+				flargoObj.transform.position += new Vector3 (0.5f, 0f, 0f);
+				this.transform.position += new Vector3 (-0.5f, 0f, 0f);
+				Dead ();
+
+				if (flargoObj.current_health <= 0) {
+					Destroy(collision.collider.gameObject);
+				}
 				unitManagerScript.rewardGold (7);
 			}
 			if (collision.collider.gameObject.name.Contains("prax"))
 			{
-				Debug.Log("Morty attacked Prax");
-				Destroy(collision.collider.gameObject);
-				Destroy(gameObject);
+				praxObj = collision.collider.gameObject.GetComponent<praxScript>();
+				praxObj.current_health -= damage;
+				current_health -= praxObj.damage;
+				praxObj.transform.position += new Vector3 (0.5f, 0f, 0f);
+				this.transform.position += new Vector3 (-0.5f, 0f, 0f);
 				unitManagerScript.rewardGold (12);
 			}
 		}
@@ -44,6 +58,13 @@ public class karateMortyScript : MonoBehaviour {
 			tempScript.decreaseHealth(5f);
 			Debug.Log("Attacked enemy tower!");
 			Destroy(gameObject);
+		}
+
+	}
+
+	void Dead() {
+		if (current_health <= 0) {
+			Destroy (gameObject);
 		}
 	}
 }
