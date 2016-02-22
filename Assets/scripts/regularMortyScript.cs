@@ -13,6 +13,8 @@ public class regularMortyScript : MonoBehaviour {
 	// Use this for initialization
 	void Start () {
 		unitManagerScript = Camera.main.GetComponent<UnitManager>();
+		Debug.Log ("Layer: " + gameObject.layer);
+		Physics.IgnoreLayerCollision (8, 8);
 	}
 	
 	// Update is called once per frame
@@ -20,12 +22,10 @@ public class regularMortyScript : MonoBehaviour {
 		this.transform.Translate (new Vector3 (1f * Time.deltaTime, 0f, 0f));
 	}
 
+
+
     void OnCollisionEnter(Collision collision)
     {
-		if (collision.gameObject.tag == "Ally") {
-			Physics.IgnoreCollision (GetComponent<Collider>(), collision.collider);
-			Debug.Log ("Ally collision ignored");
-		}
 		if (collision.gameObject.tag == "Enemy")
 		{
 			if (collision.collider.gameObject.name.Contains("flargo")) {

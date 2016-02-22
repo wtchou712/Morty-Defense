@@ -13,6 +13,7 @@ public class frozenMortyScript : MonoBehaviour {
 	// Use this for initialization
 	void Start () {
 		unitManagerScript = Camera.main.GetComponent<UnitManager>();
+		Physics.IgnoreLayerCollision (8, 8);
 	}
 
 	// Update is called once per frame
@@ -22,9 +23,6 @@ public class frozenMortyScript : MonoBehaviour {
 
 	void OnCollisionEnter(Collision collision)
 	{
-		if (collision.gameObject.tag == "Ally") {
-			Physics.IgnoreCollision (GetComponent<Collider>(), collision.collider);
-		}
 		if (collision.gameObject.tag == "Enemy")
 		{
 			if (collision.collider.gameObject.name.Contains("flargo")) {

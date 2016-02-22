@@ -13,6 +13,7 @@ public class karateMortyScript : MonoBehaviour {
 	// Use this for initialization
 	void Start () {
 		unitManagerScript = Camera.main.GetComponent<UnitManager>();
+		Physics.IgnoreLayerCollision (8, 8); //ignore ally collision
 	}
 
 	// Update is called once per frame
@@ -22,10 +23,6 @@ public class karateMortyScript : MonoBehaviour {
 
 	void OnCollisionEnter(Collision collision)
 	{
-		if (collision.gameObject.tag == "Ally") {
-			Physics.IgnoreCollision (GetComponent<Collider>(), collision.collider);
-			Debug.Log ("Ally collision ignored");
-		}
 		if (collision.gameObject.tag == "Enemy")
 		{
 			if (collision.collider.gameObject.name.Contains("flargo")) {

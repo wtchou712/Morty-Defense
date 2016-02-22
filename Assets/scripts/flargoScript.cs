@@ -9,6 +9,7 @@ public class flargoScript : MonoBehaviour {
 	public int damage = 10;
 	// Use this for initialization
 	void Start () {
+		Physics.IgnoreLayerCollision (9, 9);
 
 	}
 	

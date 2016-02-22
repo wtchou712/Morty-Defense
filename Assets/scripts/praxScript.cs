@@ -8,7 +8,7 @@ public class praxScript : MonoBehaviour {
 	public int damage = 20;
 	// Use this for initialization
 	void Start () {
-
+		Physics.IgnoreLayerCollision (9, 9);
 	}
 
 	// Update is called once per frame

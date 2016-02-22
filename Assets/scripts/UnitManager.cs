@@ -74,7 +74,7 @@ public class UnitManager : MonoBehaviour {
 	    }
 		if (spawnPraxTime > 5.0f) {
 			spawnPraxTime -= 5.0f;
-//			SpawnPrax ();
+			SpawnPrax ();
 		}
 
         else { }
