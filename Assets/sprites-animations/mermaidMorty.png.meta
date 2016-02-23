@@ -1,12 +1,15 @@
 fileFormatVersion: 2
 guid: 734fcf8d691da41789d5370d31940129
-timeCreated: 1456258522
+timeCreated: 1456260685
 licenseType: Free
 TextureImporter:
   fileIDToRecycleName:
-    21300000: mermaidMorty_1
+    21300000: mermaidMortySide1
     21300002: mermaidMorty_4
-    21300004: mermaidMorty_1
+    21300004: mermaidMortySide1
+    21300006: mermaidMortySide2
+    21300008: mermaidMortySide3
+    21300010: mermaidMortySide4
   serializedVersion: 2
   mipmaps:
     mipMapMode: 0
@@ -53,7 +56,7 @@ TextureImporter:
   buildTargetSettings: []
   spriteSheet:
     sprites:
-    - name: mermaidMorty_1
+    - name: mermaidMortySide1
       rect:
         serializedVersion: 2
         x: 16
@@ -70,6 +73,63 @@ TextureImporter:
         - {x: -47, y: 0}
         - {x: 47, y: 0}
         - {x: 47, y: 125}
+    - name: mermaidMortySide2
+      rect:
+        serializedVersion: 2
+        x: 145
+        y: 169
+        width: 94
+        height: 123
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: 39, y: 61.5}
+        - {x: -17, y: 61.5}
+        - {x: -47, y: 42.5}
+        - {x: -47, y: -47.5}
+        - {x: -13, y: -61.5}
+        - {x: 31, y: -61.5}
+        - {x: 47, y: 0.5}
+        - {x: 47, y: 55.5}
+    - name: mermaidMortySide3
+      rect:
+        serializedVersion: 2
+        x: 274
+        y: 171
+        width: 94
+        height: 120
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -47, y: 60}
+        - {x: -47, y: -27}
+        - {x: -22, y: -60}
+        - {x: 29, y: -60}
+        - {x: 47, y: 0}
+        - {x: 47, y: 60}
+    - name: mermaidMortySide4
+      rect:
+        serializedVersion: 2
+        x: 403
+        y: 170
+        width: 94
+        height: 119
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: 38, y: 59.5}
+        - {x: -14, y: 59.5}
+        - {x: -47, y: 39.5}
+        - {x: -47, y: -24.5}
+        - {x: -33, y: -58.5}
+        - {x: -32, y: -59.5}
+        - {x: 27, y: -59.5}
+        - {x: 42, y: -53.5}
+        - {x: 47, y: -17.5}
+        - {x: 47, y: 53.5}
     outline: []
   spritePackingTag: 
   userData: 
