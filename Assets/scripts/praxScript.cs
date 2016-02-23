@@ -4,7 +4,7 @@ using System.Collections;
 public class praxScript : MonoBehaviour {
 	//public AllyTowerScript tempScript = gameObject.AddComponent<AllyTowerScript>();
 	public AllyTowerScript tempScript;
-	public int current_health = 50;
+	public int current_health = 80;
 	public int damage = 10;
 	// Use this for initialization
 	void Start () {
@@ -24,7 +24,6 @@ public class praxScript : MonoBehaviour {
 			tempScript = collision.collider.gameObject.GetComponent<AllyTowerScript>();
 			tempScript.decreaseHealth(5f);
 			this.transform.position += new Vector3 (0.5f, 0f, 0f);
-			//Destroy(gameObject);
 		}
 	}
 }

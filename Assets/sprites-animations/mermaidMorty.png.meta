@@ -1,11 +1,12 @@
 fileFormatVersion: 2
 guid: 734fcf8d691da41789d5370d31940129
-timeCreated: 1456255950
+timeCreated: 1456258522
 licenseType: Free
 TextureImporter:
   fileIDToRecycleName:
     21300000: mermaidMorty_1
     21300002: mermaidMorty_4
+    21300004: mermaidMorty_1
   serializedVersion: 2
   mipmaps:
     mipMapMode: 0
@@ -52,36 +53,23 @@ TextureImporter:
   buildTargetSettings: []
   spriteSheet:
     sprites:
-    - name: mermaidMorty_4
+    - name: mermaidMorty_1
       rect:
         serializedVersion: 2
-        x: 386
-        y: 161
-        width: 126
-        height: 170
+        x: 16
+        y: 167
+        width: 94
+        height: 125
       alignment: 7
       pivot: {x: 0.5, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline:
-      - - {x: 4, y: 15}
-        - {x: 8, y: 10}
-        - {x: 12, y: 9}
-        - {x: 39, y: 17}
-        - {x: 55, y: 112}
-        - {x: 32, y: 136}
-        - {x: -35, y: 119}
-        - {x: -52, y: 90}
-        - {x: -44, y: 56}
-        - {x: -34, y: 28}
-        - {x: -56, y: 9}
-        - {x: -56, y: 167}
-        - {x: 63, y: 167}
-        - {x: 63, y: 170}
-        - {x: -63, y: 170}
-        - {x: -63, y: 0}
-        - {x: 63, y: 0}
-        - {x: 63, y: 9}
-        - {x: -1, y: 9}
+      - - {x: -3, y: 125}
+        - {x: -37, y: 116}
+        - {x: -47, y: 105}
+        - {x: -47, y: 0}
+        - {x: 47, y: 0}
+        - {x: 47, y: 125}
     outline: []
   spritePackingTag: 
   userData: 

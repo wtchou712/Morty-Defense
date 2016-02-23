@@ -45,10 +45,6 @@ public class UnitManager : MonoBehaviour {
         goldGenTime += Time.deltaTime;
 		generateGold();
 
-		//spawnFlargoTime += Time.deltaTime;
-		//spawnPraxTime += Time.deltaTime;
-        //spawnEnemy();
-
 		UpdateGoldAmount ();
 
 	}
@@ -99,7 +95,7 @@ public class UnitManager : MonoBehaviour {
 
 	private void SpawnPrax(){ 
 		GameObject prax = GameObject.Instantiate(praxPrefab);
-		prax.transform.localScale = new Vector3(0.5f, 0.5f, 0.5f);
+		prax.transform.localScale = new Vector3(0.8f, 0.8f, 0.8f);
 		prax.transform.position = new Vector3(7, Random.Range(-3.8f, -4.2f), 0);
 		Debug.Log("Spawning Object: " + prax.name);
 	}
@@ -109,13 +105,11 @@ public class UnitManager : MonoBehaviour {
 		while (goldGenTime > 1.0f) {
             goldGenTime -= 1.0f; 
 			gold += 5; 
-//			Debug.Log ("gold amount: " + gold);
 		}
 	}
 
     public void regularMortyClick()//button for spawning regular morty
     {
-		Debug.Log ("Spawn Regular Morty");
 		//if button pressed and gold greater > unit cost, spawn unit 
 		if (gold >= regularMortyCost) {
 			SpawnRegularMorty ();
@@ -124,7 +118,6 @@ public class UnitManager : MonoBehaviour {
     }
 
 	public void frozenMortyClick(){
-		Debug.Log ("Spawn Frozen Morty");
 		if (gold >= frozenMortyCost){
 			SpawnFrozenMorty ();
 			StartCoroutine (spawnDelay (frozenMortyBtn, 3));
@@ -132,7 +125,6 @@ public class UnitManager : MonoBehaviour {
 	}
 
 	public void karateMortyClick(){
-		Debug.Log ("Spawn Karate Morty");
 		if (gold >= karateMortyCost){
 			SpawnKarateMorty ();
 			StartCoroutine (spawnDelay (karateMortyBtn, 5));

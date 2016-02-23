@@ -7,7 +7,7 @@ public class frozenMortyScript : MonoBehaviour {
 	public flargoScript flargoObj;
 	public praxScript praxObj;
 
-	public int current_health = 40;
+	public int current_health = 50;
 	public int damage = 20;
 
 	// Use this for initialization
@@ -27,7 +27,7 @@ public class frozenMortyScript : MonoBehaviour {
 		{
 			if (collision.collider.gameObject.name.Contains("flargo")) {
 				flargoObj = collision.collider.gameObject.GetComponent<flargoScript>();
-				flargoObj.current_health -= damage;
+				flargoObj.current_health -= damage * 2; //frozen morty is better against flargo
 				current_health -= flargoObj.damage;
 				flargoObj.transform.position += new Vector3 (0.5f, 0f, 0f);
 				this.transform.position += new Vector3 (-0.5f, 0f, 0f);

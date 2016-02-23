@@ -43,7 +43,7 @@ public class karateMortyScript : MonoBehaviour {
 			if (collision.collider.gameObject.name.Contains("prax"))
 			{
 				praxObj = collision.collider.gameObject.GetComponent<praxScript>();
-				praxObj.current_health -= damage;
+				praxObj.current_health -= damage * 2; //karate is better against prax enemy unity
 				current_health -= praxObj.damage;
 				praxObj.transform.position += new Vector3 (0.5f, 0f, 0f);
 				this.transform.position += new Vector3 (-0.5f, 0f, 0f);
