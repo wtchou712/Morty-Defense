@@ -4,8 +4,8 @@ using System.Collections;
 public class praxScript : MonoBehaviour {
 	//public AllyTowerScript tempScript = gameObject.AddComponent<AllyTowerScript>();
 	public AllyTowerScript tempScript;
-	public int current_health = 80;
-	public int damage = 20;
+	public int current_health = 50;
+	public int damage = 10;
 	// Use this for initialization
 	void Start () {
 		Physics.IgnoreLayerCollision (9, 9);

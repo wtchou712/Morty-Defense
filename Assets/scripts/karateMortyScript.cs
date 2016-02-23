@@ -7,7 +7,7 @@ public class karateMortyScript : MonoBehaviour {
 	public flargoScript flargoObj;
 	public praxScript praxObj;
 
-	public int current_health = 30;
+	public int current_health = 50;
 	public int damage = 30;
 
 	// Use this for initialization

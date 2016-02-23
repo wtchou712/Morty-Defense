@@ -8,7 +8,7 @@ public class frozenMortyScript : MonoBehaviour {
 	public praxScript praxObj;
 
 	public int current_health = 40;
-	public int damage = 10;
+	public int damage = 20;
 
 	// Use this for initialization
 	void Start () {
