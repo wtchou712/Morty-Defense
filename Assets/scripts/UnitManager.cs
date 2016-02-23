@@ -9,6 +9,9 @@ public class UnitManager : MonoBehaviour {
 	public GameObject frozenMortyPrefab;
 	public GameObject karateMortyPrefab;
 	public GameObject praxPrefab;
+	public Button regMortyBtn;
+	public Button frozenMortyBtn;
+	public Button karateMortyBtn;
 
 	//made gold a static variable 
 	public static int gold; 
@@ -114,6 +117,7 @@ public class UnitManager : MonoBehaviour {
 		//if button pressed and gold greater > unit cost, spawn unit 
 		if (gold >= regularMortyCost) {
 			SpawnRegularMorty ();
+			StartCoroutine(spawnDelay(regMortyBtn, 1));
 		}
     }
 
@@ -121,6 +125,7 @@ public class UnitManager : MonoBehaviour {
 		Debug.Log ("Spawn Frozen Morty");
 		if (gold >= frozenMortyCost){
 			SpawnFrozenMorty ();
+			StartCoroutine (spawnDelay (frozenMortyBtn, 3));
 		}
 	}
 
@@ -128,8 +133,16 @@ public class UnitManager : MonoBehaviour {
 		Debug.Log ("Spawn Karate Morty");
 		if (gold >= karateMortyCost){
 			SpawnKarateMorty ();
+			StartCoroutine (spawnDelay (karateMortyBtn, 5));
 		}
 	}
+
+	IEnumerator spawnDelay(Button btn, int delayTime){
+		btn.interactable = false; 
+		yield return new WaitForSeconds(delayTime);
+		btn.interactable = true;
+	}
+
 	public void UpdateGoldAmount() {
 		goldText.text = "Gold Amount: " + gold.ToString ();
 	}
