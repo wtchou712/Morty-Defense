@@ -4,7 +4,7 @@ using System.Collections;
 public class regularMortyScript : MonoBehaviour {
 	public EnemyTowerScript tempScript;
 	public UnitManager unitManagerScript;
-	//intiailize enemy scripts to get health and damage
+
 	public flargoScript flargoObj;
 	public praxScript praxObj;
 
