@@ -28,13 +28,15 @@ public class UnitManager : MonoBehaviour {
 
 	public int currentWave = 1; 
 	public Text waveText; 
-	public int enemySpawnCount=0;
+	public int enemySpawnCount = 0;
+	public int enemyDeathCount = 0;
 
 
 	// Use this for initialization
 	void Start () {
 		gold = 30;
 		waveText.enabled = false;
+		StartCoroutine(spawnWave());
 	}
 
 	
@@ -43,9 +45,9 @@ public class UnitManager : MonoBehaviour {
         goldGenTime += Time.deltaTime;
 		generateGold();
 
-		spawnFlargoTime += Time.deltaTime;
-		spawnPraxTime += Time.deltaTime;
-        spawnEnemy();
+		//spawnFlargoTime += Time.deltaTime;
+		//spawnPraxTime += Time.deltaTime;
+        //spawnEnemy();
 
 		UpdateGoldAmount ();
 
@@ -152,16 +154,53 @@ public class UnitManager : MonoBehaviour {
 		Debug.Log ("gold rewarded : " + goldReward);
 	}
 
+	public void enemyUnitKilled(){
+		enemyDeathCount++;
+		if (enemyDeathCount == enemySpawnCount) {
+			waveComplete();
+		}
+	}
+
 	public void waveComplete(){
+		enemyDeathCount = 0; 
+		enemySpawnCount = 0; 
 		waveText.text = "Wave " + currentWave + " Completed";
 		StartCoroutine (displayWaveComplete ());
-		currentWave++; 
+		currentWave++;
+		StartCoroutine(spawnWave());
 	}
 
 	IEnumerator displayWaveComplete(){
 		waveText.enabled = true;	
 		yield return new WaitForSeconds (3);
 		waveText.enabled = false; 
+	}
+
+	IEnumerator spawnWave(){
+		//enemyUnits = currentWave * 10
+		//random(1, currentWave) for which enemy to spawn
+		for (int i = 0; i < currentWave * 10; i++) {
+			int unitID = Random.Range (1, currentWave + 1); 
+			if (unitID == 1) {
+				SpawnFlargo();
+			} 
+			else if (unitID == 2) {
+				SpawnPrax();
+			}
+			//add more enemy unit IDs here
+			yield return new WaitForSeconds(2);
+			enemySpawnCount++;
+		}
+	}
+
+	public void gameOver(bool win){
+		if (win) {
+			waveText.text = "Player wins!";
+		} 
+		else {
+			waveText.text = "Game over!"; 
+		}
+		waveText.enabled = true;
 	}
 		
 }

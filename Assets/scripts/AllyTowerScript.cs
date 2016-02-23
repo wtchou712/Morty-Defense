@@ -2,6 +2,7 @@
 using System.Collections;
 
 public class AllyTowerScript : MonoBehaviour {
+	public UnitManager unitManagerScript;
 
 	public float maxHealth = 100f;
 	public float currentHealth = 0f;
@@ -10,7 +11,7 @@ public class AllyTowerScript : MonoBehaviour {
 	// Use this for initialization
 	void Start () {
 		currentHealth = maxHealth;
-//		InvokeRepeating ("decreaseHealth", 1f, 1f);
+		unitManagerScript = Camera.main.GetComponent<UnitManager>();
 	}
 	
 	// Update is called once per frame
@@ -23,6 +24,8 @@ public class AllyTowerScript : MonoBehaviour {
 		currentHealth -= healthLost;
 		if (currentHealth <= 0) {
 			Destroy (gameObject);
+			unitManagerScript.gameOver (false);
+
 		}
 		float calculatedHealth = currentHealth / maxHealth;
 		setHealthBar (calculatedHealth);

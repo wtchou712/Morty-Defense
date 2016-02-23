@@ -24,8 +24,9 @@ public class praxScript : MonoBehaviour {
 			//Debug.Log ("collision here");
 			tempScript = collision.collider.gameObject.GetComponent<AllyTowerScript>();
 			tempScript.decreaseHealth(5f);
+			this.transform.position += new Vector3 (0.5f, 0f, 0f);
 			//Debug.Log("Flargo destroyed ally tower");
-			Destroy(gameObject);
+			//Destroy(gameObject);
 		}
 	}
 }

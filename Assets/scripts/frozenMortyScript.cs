@@ -31,12 +31,13 @@ public class frozenMortyScript : MonoBehaviour {
 				current_health -= flargoObj.damage;
 				flargoObj.transform.position += new Vector3 (0.5f, 0f, 0f);
 				this.transform.position += new Vector3 (-0.5f, 0f, 0f);
-				Dead ();
 
+				Dead ();
 				if (flargoObj.current_health <= 0) {
 					Destroy(collision.collider.gameObject);
+					unitManagerScript.enemyUnitKilled();
+					unitManagerScript.rewardGold (10);
 				}
-				unitManagerScript.rewardGold (7);
 			}
 			if (collision.collider.gameObject.name.Contains("prax"))
 			{
@@ -45,7 +46,13 @@ public class frozenMortyScript : MonoBehaviour {
 				current_health -= praxObj.damage;
 				praxObj.transform.position += new Vector3 (0.5f, 0f, 0f);
 				this.transform.position += new Vector3 (-0.5f, 0f, 0f);
-				unitManagerScript.rewardGold (12);
+
+				Dead ();
+				if (praxObj.current_health <= 0) {
+					Destroy(collision.collider.gameObject);
+					unitManagerScript.enemyUnitKilled();
+					unitManagerScript.rewardGold (15);
+				}
 			}
 		}
 		//When collided with enemy tower, enemy tower disappears for now 
@@ -54,7 +61,8 @@ public class frozenMortyScript : MonoBehaviour {
 			tempScript = collision.collider.gameObject.GetComponent<EnemyTowerScript>();
 			tempScript.decreaseHealth(5f);
 			Debug.Log("Attacked enemy tower!");
-			Destroy(gameObject);
+			this.transform.position += new Vector3 (-0.5f, 0f, 0f);
+			//Destroy(gameObject);
 		}
 	}
 

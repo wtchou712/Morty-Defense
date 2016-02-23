@@ -12,7 +12,6 @@ public class EnemyTowerScript : MonoBehaviour {
 	void Start () {
 		currentHealth = maxHealth;
 		unitManagerScript = Camera.main.GetComponent<UnitManager>();
-
 	}
 
 	// Update is called once per frame
@@ -24,7 +23,7 @@ public class EnemyTowerScript : MonoBehaviour {
 		Debug.Log ("decreased HP");
 		currentHealth -= healthLost;
 		if (currentHealth <= 0) {
-			unitManagerScript.waveComplete ();
+			unitManagerScript.gameOver (true);//set true for win
 			Destroy (gameObject);
 		}
 		float calculatedHealth = currentHealth / maxHealth;
