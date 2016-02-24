@@ -1,7 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class regularMortyScript : MonoBehaviour {
+public class shadowMortyScript : MonoBehaviour {
 	public EnemyTowerScript tempScript;
 	public UnitManager unitManagerScript;
 
@@ -9,15 +9,15 @@ public class regularMortyScript : MonoBehaviour {
 	public praxScript praxObj;
 	public mermaidScript mermaidObj;
 
-	public int current_health = 30;
-	public int damage = 10;
+	public int current_health = 50;
+	public int damage = 50;
 	// Use this for initialization
 	void Start () {
 		unitManagerScript = Camera.main.GetComponent<UnitManager>();
 		Debug.Log ("Layer: " + gameObject.layer);
 		Physics.IgnoreLayerCollision (8, 8);
 	}
-	
+
 	// Update is called once per frame
 	void Update () {
 		this.transform.Translate (new Vector3 (1f * Time.deltaTime, 0f, 0f));
@@ -25,8 +25,8 @@ public class regularMortyScript : MonoBehaviour {
 
 
 
-    void OnCollisionEnter(Collision collision)
-    {
+	void OnCollisionEnter(Collision collision)
+	{
 		if (collision.gameObject.tag == "Enemy")
 		{
 			if (collision.collider.gameObject.name.Contains("flargo")) {
@@ -61,7 +61,7 @@ public class regularMortyScript : MonoBehaviour {
 			if (collision.collider.gameObject.name.Contains("mermaid"))
 			{
 				mermaidObj = collision.collider.gameObject.GetComponent<mermaidScript>();
-				mermaidObj.current_health -= damage * 2; //karate is better against prax enemy unity
+				mermaidObj.current_health -= damage; 
 				current_health -= mermaidObj.damage;
 				mermaidObj.transform.position += new Vector3 (0.5f, 0f, 0f);
 				this.transform.position += new Vector3 (-0.5f, 0f, 0f);
@@ -85,12 +85,12 @@ public class regularMortyScript : MonoBehaviour {
 			this.transform.position += new Vector3 (-0.5f, 0f, 0f);
 			//Destroy(gameObject);
 		}
-			
-    }
+
+	}
 	void Dead() {
 		if (current_health <= 0) {
 			Destroy (gameObject);
 		}
 	}
-    
+
 }

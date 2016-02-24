@@ -9,11 +9,13 @@ public class UnitManager : MonoBehaviour {
 	public GameObject frozenMortyPrefab;
 	public GameObject karateMortyPrefab;
 	public GameObject praxPrefab;
-	public GameObject mermaidMortyPrefab;
+	public GameObject mermaidPrefab;
+	public GameObject shadowPrefab;
 
 	public Button regMortyBtn;
 	public Button frozenMortyBtn;
 	public Button karateMortyBtn;
+	public Button shadowMortyBtn;
 
 	//made gold a static variable 
 	public static int gold; 
@@ -23,11 +25,13 @@ public class UnitManager : MonoBehaviour {
 	public int regularMortyCost = 10;
 	public int frozenMortyCost = 20;
 	public int karateMortyCost = 30;
+	public int shadowMortyCost = 50;
 
 	double goldGenTime = 0;
     double spawnFlargoTime = 0; 
 	double spawnPraxTime = 0; 
 	double spawnMermaidTime = 0;
+	double spawnShadowTime = 0;
 
 	public int currentWave = 1; 
 	public Text waveText; 
@@ -72,7 +76,12 @@ public class UnitManager : MonoBehaviour {
 		karateMorty.transform.position = new Vector3 (-7, Random.Range (-3.8f, -4.2f), 0);
 		gold -= karateMortyCost;
 	}
-		
+	private void SpawnShadowMorty(){
+		GameObject shadowMorty = GameObject.Instantiate (shadowPrefab);
+		shadowMorty.transform.localScale = new Vector3 (-0.5f, 0.5f, 0.5f);
+		shadowMorty.transform.position = new Vector3 (-7, Random.Range (-3.8f, -4.2f), 0);
+		gold -= shadowMortyCost;
+	}
     
     private void spawnEnemy()
     {
@@ -105,9 +114,9 @@ public class UnitManager : MonoBehaviour {
 		prax.transform.position = new Vector3(7, Random.Range(-3.8f, -4.2f), 0);
 	}
 	private void SpawnMermaid() {
-		GameObject mermaidMorty = GameObject.Instantiate(mermaidMortyPrefab);
-		mermaidMorty.transform.localScale = new Vector3(0.5f, 0.5f, 0.5f);
-		mermaidMorty.transform.position = new Vector3(7, Random.Range (-3.8f, -4.2f), 0);
+		GameObject mermaid = GameObject.Instantiate(mermaidPrefab);
+		mermaid.transform.localScale = new Vector3(0.5f, 0.5f, 0.5f);
+		mermaid.transform.position = new Vector3(7, Random.Range (-3.8f, -4.2f), 0);
 	}
 		
 
@@ -140,6 +149,14 @@ public class UnitManager : MonoBehaviour {
 			StartCoroutine (spawnDelay (karateMortyBtn, 5));
 		}
 	}
+
+	public void shadowMortyClick(){
+		if (gold >= shadowMortyCost){
+			SpawnShadowMorty ();
+			StartCoroutine (spawnDelay (shadowMortyBtn, 7));
+		}
+	}
+
 
 	IEnumerator spawnDelay(Button btn, int delayTime){
 		btn.interactable = false; 

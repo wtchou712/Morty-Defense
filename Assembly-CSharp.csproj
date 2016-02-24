@@ -45,7 +45,6 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-     <Compile Include="Assets\mermaidScript.cs" />
      <Compile Include="Assets\scripts\AllyTowerScript.cs" />
      <Compile Include="Assets\scripts\EnemyTowerScript.cs" />
      <Compile Include="Assets\scripts\HPBarScript.cs" />
@@ -53,8 +52,10 @@
      <Compile Include="Assets\scripts\flargoScript.cs" />
      <Compile Include="Assets\scripts\frozenMortyScript.cs" />
      <Compile Include="Assets\scripts\karateMortyScript.cs" />
+     <Compile Include="Assets\scripts\mermaidScript.cs" />
      <Compile Include="Assets\scripts\praxScript.cs" />
      <Compile Include="Assets\scripts\regularMortyScript.cs" />
+     <Compile Include="Assets\shadowMortyScript.cs" />
  <Reference Include="UnityEngine.Networking">
  <HintPath>/Applications/Unity/Unity.app/Contents/UnityExtensions/Unity/Networking/UnityEngine.Networking.dll</HintPath>
  </Reference>

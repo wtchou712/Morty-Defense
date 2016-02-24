@@ -6,9 +6,10 @@ public class karateMortyScript : MonoBehaviour {
 	public UnitManager unitManagerScript;
 	public flargoScript flargoObj;
 	public praxScript praxObj;
+	public mermaidScript mermaidObj;
 
 	public int current_health = 50;
-	public int damage = 30;
+	public int damage = 50;
 
 	// Use this for initialization
 	void Start () {
@@ -50,6 +51,22 @@ public class karateMortyScript : MonoBehaviour {
 
 				Dead();
 				if (praxObj.current_health <= 0) {
+					Destroy(collision.collider.gameObject);
+					unitManagerScript.enemyUnitKilled();
+					unitManagerScript.rewardGold (15);
+				}
+
+			}
+			if (collision.collider.gameObject.name.Contains("mermaid"))
+			{
+				mermaidObj = collision.collider.gameObject.GetComponent<mermaidScript>();
+				mermaidObj.current_health -= damage * 2; //karate is better against prax enemy unity
+				current_health -= mermaidObj.damage;
+				mermaidObj.transform.position += new Vector3 (0.5f, 0f, 0f);
+				this.transform.position += new Vector3 (-0.5f, 0f, 0f);
+
+				Dead();
+				if (mermaidObj.current_health <= 0) {
 					Destroy(collision.collider.gameObject);
 					unitManagerScript.enemyUnitKilled();
 					unitManagerScript.rewardGold (15);
