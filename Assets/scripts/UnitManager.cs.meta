@@ -1,10 +1,21 @@
 fileFormatVersion: 2
 guid: 9765930584b1748adb3fdf31faad4114
-timeCreated: 1454882386
+timeCreated: 1456294273
 licenseType: Free
 MonoImporter:
   serializedVersion: 2
-  defaultReferences: []
+  defaultReferences:
+  - regularMortyPrefab: {instanceID: 0}
+  - flargoPrefab: {instanceID: 0}
+  - frozenMortyPrefab: {instanceID: 0}
+  - karateMortyPrefab: {instanceID: 0}
+  - praxPrefab: {instanceID: 0}
+  - mermaidMortyPrefab: {fileID: 121462, guid: 39dc5e29e64374db393cbe44b2035293, type: 2}
+  - regMortyBtn: {instanceID: 0}
+  - frozenMortyBtn: {instanceID: 0}
+  - karateMortyBtn: {instanceID: 0}
+  - goldText: {instanceID: 0}
+  - waveText: {instanceID: 0}
   executionOrder: 0
   icon: {instanceID: 0}
   userData: 

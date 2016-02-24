@@ -9,6 +9,8 @@ public class UnitManager : MonoBehaviour {
 	public GameObject frozenMortyPrefab;
 	public GameObject karateMortyPrefab;
 	public GameObject praxPrefab;
+	public GameObject mermaidMortyPrefab;
+
 	public Button regMortyBtn;
 	public Button frozenMortyBtn;
 	public Button karateMortyBtn;
@@ -25,6 +27,7 @@ public class UnitManager : MonoBehaviour {
 	double goldGenTime = 0;
     double spawnFlargoTime = 0; 
 	double spawnPraxTime = 0; 
+	double spawnMermaidTime = 0;
 
 	public int currentWave = 1; 
 	public Text waveText; 
@@ -82,6 +85,10 @@ public class UnitManager : MonoBehaviour {
 			spawnPraxTime -= 5.0f;
 			SpawnPrax ();
 		}
+		if (spawnMermaidTime > 7.0f) {
+			spawnMermaidTime -= 7.0f;
+			SpawnMermaid();
+		}
         else { }
 		enemySpawnCount++;
     }
@@ -90,14 +97,17 @@ public class UnitManager : MonoBehaviour {
 		GameObject flargo = GameObject.Instantiate(flargoPrefab);
 		flargo.transform.localScale = new Vector3(0.5f, 0.5f, 0.5f);
 		flargo.transform.position = new Vector3(7, Random.Range(-3.8f, -4.2f), 0);
-		Debug.Log("Spawning Object: " + flargo.name);
     }
 
 	private void SpawnPrax(){ 
 		GameObject prax = GameObject.Instantiate(praxPrefab);
 		prax.transform.localScale = new Vector3(0.8f, 0.8f, 0.8f);
 		prax.transform.position = new Vector3(7, Random.Range(-3.8f, -4.2f), 0);
-		Debug.Log("Spawning Object: " + prax.name);
+	}
+	private void SpawnMermaid() {
+		GameObject mermaidMorty = GameObject.Instantiate(mermaidMortyPrefab);
+		mermaidMorty.transform.localScale = new Vector3(0.5f, 0.5f, 0.5f);
+		mermaidMorty.transform.position = new Vector3(7, Random.Range (-3.8f, -4.2f), 0);
 	}
 		
 
@@ -174,10 +184,11 @@ public class UnitManager : MonoBehaviour {
 		for (int i = 0; i < currentWave * 10; i++) {
 			int unitID = Random.Range (1, currentWave + 1); 
 			if (unitID == 1) {
-				SpawnFlargo();
-			} 
-			else if (unitID == 2) {
-				SpawnPrax();
+				SpawnFlargo ();
+			} else if (unitID == 2) {
+				SpawnPrax ();
+			} else if (unitID == 3) {
+				SpawnMermaid ();
 			}
 			//add more enemy unit IDs here
 			yield return new WaitForSeconds(2);
