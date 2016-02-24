@@ -23,8 +23,6 @@ public class shadowMortyScript : MonoBehaviour {
 		this.transform.Translate (new Vector3 (1f * Time.deltaTime, 0f, 0f));
 	}
 
-
-
 	void OnCollisionEnter(Collision collision)
 	{
 		if (collision.gameObject.tag == "Enemy")

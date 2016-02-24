@@ -10,7 +10,7 @@ public class frozenMortyScript : MonoBehaviour {
 
 
 	public int current_health = 50;
-	public int damage = 20;
+	public int damage = 30;
 
 	// Use this for initialization
 	void Start () {
