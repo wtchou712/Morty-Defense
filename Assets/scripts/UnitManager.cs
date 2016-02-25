@@ -31,7 +31,7 @@ public class UnitManager : MonoBehaviour {
     double spawnFlargoTime = 0; 
 	double spawnPraxTime = 0; 
 	double spawnMermaidTime = 0;
-	double spawnShadowTime = 0;
+	//double spawnShadowTime = 0;
 
 	public int currentWave = 1; 
 	public Text waveText; 
