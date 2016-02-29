@@ -20,7 +20,7 @@ public class EnemyTowerScript : MonoBehaviour {
 	}
 
 	public void decreaseHealth(float healthLost){
-		Debug.Log ("decreased HP");
+		//Debug.Log ("decreased HP");
 		currentHealth -= healthLost;
 		if (currentHealth <= 0) {
 			unitManagerScript.gameOver (true);//set true for win

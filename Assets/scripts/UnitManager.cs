@@ -23,9 +23,13 @@ public class UnitManager : MonoBehaviour {
 	public Button shadowMortyBtn;
 
 	public GameObject regMortyLabel;
-	public GameObject karateMortyLabel;
 	public GameObject frozenMortyLabel;
+	public GameObject karateMortyLabel;
 	public GameObject shadowMortyLabel;
+
+	public string frozenMortyText; 
+	public string karateMortyText;
+	public string shadowMortyText;
 
 	//made gold a static variable 
 	public static int gold; 
@@ -56,13 +60,18 @@ public class UnitManager : MonoBehaviour {
 		waveText.enabled = false;
 		StartCoroutine(spawnWave());
 
-		regMortyLabel = GameObject.Find ("regMortyLabel");
-		frozenMortyLabel = GameObject.Find ("frozenMortyLabel");
-		karateMortyLabel = GameObject.Find ("karateMortyLabel");
-		shadowMortyLabel = GameObject.Find ("shadowMortyLabel");
+		//set the unlock message
+		frozenMortyText = frozenMortyLabel.GetComponent<Text> ().text;
+		frozenMortyLabel.GetComponent<Text>().text = "Unlock with " + 2*frozenMortyCost + "G\nFrozen Morty (2)\nSlow units for 2 seconds \nStrong against Flargo";
+
+		karateMortyText = karateMortyLabel.GetComponent<Text> ().text;
+		karateMortyLabel.GetComponent<Text>().text = "Unlock with " + 2*karateMortyCost + "G\nKarate Morty (3)\nHigh damage\nSpeed ";
+
+		shadowMortyText = shadowMortyLabel.GetComponent<Text> ().text;
+		shadowMortyLabel.GetComponent<Text>().text = "Unlock with " + 2*shadowMortyCost + "G\nShadow Morty (4)\nAvoid enemy units\nStrong against all ";
 	}
 
-	
+
 	// Update is called once per frame
 	void Update () {
         goldGenTime += Time.deltaTime;
@@ -145,7 +154,7 @@ public class UnitManager : MonoBehaviour {
 
 	public void checkUnlockButtons(){
 		if (!unlockedFrozenMorty) {
-			frozenMortyBtn.interactable = false; 	
+			frozenMortyBtn.interactable = false; 
 		}
 		if (!unlockedKarateMorty) {
 			karateMortyBtn.interactable = false; 
@@ -170,6 +179,7 @@ public class UnitManager : MonoBehaviour {
 				unlockedFrozenMorty = true; 
 				gold -= 2 * frozenMortyCost;
 				frozenMortyBtn.interactable = true;
+				frozenMortyLabel.GetComponent<Text> ().text = frozenMortyText;
 			}
 		}
 		else if (gold >= frozenMortyCost){
@@ -184,6 +194,7 @@ public class UnitManager : MonoBehaviour {
 				unlockedKarateMorty = true; 
 				gold -= 2 * karateMortyCost;
 				karateMortyBtn.interactable = true;
+				karateMortyLabel.GetComponent<Text> ().text = karateMortyText;
 			}
 		}
 		else if (gold >= karateMortyCost){
@@ -198,6 +209,7 @@ public class UnitManager : MonoBehaviour {
 				unlockedShadowMorty = true; 
 				gold -= 2 * shadowMortyCost;
 				shadowMortyBtn.interactable = true;
+				shadowMortyLabel.GetComponent<Text> ().text = shadowMortyText;
 			}
 		}
 		else if (gold >= shadowMortyCost){
@@ -219,7 +231,7 @@ public class UnitManager : MonoBehaviour {
 
 	public void rewardGold(int goldReward){
 		gold += goldReward;
-		Debug.Log ("gold rewarded : " + goldReward);
+		//Debug.Log ("gold rewarded : " + goldReward);
 	}
 
 	public void enemyUnitKilled(){

@@ -84,7 +84,7 @@ public class frozenMortyScript : MonoBehaviour {
 		{
 			tempScript = collision.collider.gameObject.GetComponent<EnemyTowerScript>();
 			tempScript.decreaseHealth(5f);
-			Debug.Log("Attacked enemy tower!");
+			////debug.Log("Attacked enemy tower!");
 			this.transform.position += new Vector3 (-0.5f, 0f, 0f);
 		}
 	}
