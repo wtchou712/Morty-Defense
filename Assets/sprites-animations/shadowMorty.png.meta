@@ -1,6 +1,6 @@
 fileFormatVersion: 2
 guid: e7a58b563e18d47cd818ab477d756572
-timeCreated: 1456340076
+timeCreated: 1456716556
 licenseType: Free
 TextureImporter:
   fileIDToRecycleName:
@@ -8,6 +8,7 @@ TextureImporter:
     21300002: shadowMortySide1
     21300004: shadowMortySide3
     21300006: shadowMortySide4
+    21300008: shadowMortyFront
   serializedVersion: 2
   mipmaps:
     mipMapMode: 0
@@ -130,6 +131,25 @@ TextureImporter:
         - {x: 48, y: -17.5}
         - {x: 48, y: 41.5}
         - {x: 44, y: 48.5}
+    - name: shadowMortyFront
+      rect:
+        serializedVersion: 2
+        x: 18
+        y: 342
+        width: 97
+        height: 128
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -43.5, y: 64}
+        - {x: -48.5, y: 60}
+        - {x: -48.5, y: -39}
+        - {x: -40.5, y: -64}
+        - {x: 36.5, y: -64}
+        - {x: 48.5, y: -53}
+        - {x: 48.5, y: 56}
+        - {x: 46.5, y: 64}
     outline: []
   spritePackingTag: 
   userData: 

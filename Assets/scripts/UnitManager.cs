@@ -52,8 +52,8 @@ public class UnitManager : MonoBehaviour {
         goldGenTime += Time.deltaTime;
 		generateGold();
 
-		UpdateGoldAmount ();
-
+		UpdateGoldAmount();
+		checkKeyPressed();
 	}
 
 	private void SpawnRegularMorty(){
@@ -221,6 +221,22 @@ public class UnitManager : MonoBehaviour {
 			waveText.text = "Game over!"; 
 		}
 		waveText.enabled = true;
+	}
+
+	public void checkKeyPressed() {
+		if(Input.GetButtonDown("SpawnRegularMorty")){
+			regularMortyClick();
+		}
+		if(Input.GetButtonDown("SpawnFrozenMorty")){
+			frozenMortyClick();
+		}
+		if(Input.GetButtonDown("SpawnKarateMorty")){
+			karateMortyClick();
+		}
+		if(Input.GetButtonDown("SpawnShadowMorty")){
+			shadowMortyClick();
+		}
+	
 	}
 		
 }
