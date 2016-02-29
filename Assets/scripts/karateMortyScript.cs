@@ -32,6 +32,7 @@ public class karateMortyScript : MonoBehaviour {
 				flargoObj.current_health -= damage;
 				current_health -= flargoObj.damage;
 
+				unitManagerScript.displayFlash (flargoObj.transform.position, this.transform.position);
 				flargoObj.transform.position += new Vector3 (0.5f, 0f, 0f);
 				this.transform.position += new Vector3 (-0.5f, 0f, 0f);
 
@@ -48,6 +49,8 @@ public class karateMortyScript : MonoBehaviour {
 				praxObj = collision.collider.gameObject.GetComponent<praxScript>();
 				praxObj.current_health -= damage * 2; //karate is better against prax enemy unity
 				current_health -= praxObj.damage;
+
+				unitManagerScript.displayFlash (praxObj.transform.position, this.transform.position);
 				praxObj.transform.position += new Vector3 (0.5f, 0f, 0f);
 				this.transform.position += new Vector3 (-0.5f, 0f, 0f);
 
@@ -65,6 +68,7 @@ public class karateMortyScript : MonoBehaviour {
 				mermaidObj.current_health -= damage * 2; //karate is better against prax enemy unity
 				current_health -= mermaidObj.damage;
 
+				unitManagerScript.displayFlash (mermaidObj.transform.position, this.transform.position);
 				mermaidObj.transform.position += new Vector3 (0.5f, 0f, 0f);
 				this.transform.position += new Vector3 (-0.5f, 0f, 0f);
 
@@ -94,9 +98,5 @@ public class karateMortyScript : MonoBehaviour {
 			Destroy (gameObject);
 		}
 	}
-
-	void displayFlash(Vector3 allyPosition, Vector3 enemyPosition) {
-		Vector3 midpoint = (allyPosition + enemyPosition) / 2;
-
-	}
+		
 }

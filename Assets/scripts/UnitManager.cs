@@ -11,11 +11,21 @@ public class UnitManager : MonoBehaviour {
 	public GameObject praxPrefab;
 	public GameObject mermaidPrefab;
 	public GameObject shadowPrefab;
+	public GameObject flashPrefab;
+
+	public bool unlockedFrozenMorty = false;
+	public bool unlockedKarateMorty = false;
+	public bool unlockedShadowMorty = false;
 
 	public Button regMortyBtn;
 	public Button frozenMortyBtn;
 	public Button karateMortyBtn;
 	public Button shadowMortyBtn;
+
+	public GameObject regMortyLabel;
+	public GameObject karateMortyLabel;
+	public GameObject frozenMortyLabel;
+	public GameObject shadowMortyLabel;
 
 	//made gold a static variable 
 	public static int gold; 
@@ -26,6 +36,7 @@ public class UnitManager : MonoBehaviour {
 	public int frozenMortyCost = 20;
 	public int karateMortyCost = 30;
 	public int shadowMortyCost = 50;
+
 
 	double goldGenTime = 0;
     double spawnFlargoTime = 0; 
@@ -44,6 +55,11 @@ public class UnitManager : MonoBehaviour {
 		gold = 30;
 		waveText.enabled = false;
 		StartCoroutine(spawnWave());
+
+		regMortyLabel = GameObject.Find ("regMortyLabel");
+		frozenMortyLabel = GameObject.Find ("frozenMortyLabel");
+		karateMortyLabel = GameObject.Find ("karateMortyLabel");
+		shadowMortyLabel = GameObject.Find ("shadowMortyLabel");
 	}
 
 	
@@ -51,8 +67,8 @@ public class UnitManager : MonoBehaviour {
 	void Update () {
         goldGenTime += Time.deltaTime;
 		generateGold();
-
 		UpdateGoldAmount();
+		checkUnlockButtons ();
 		checkKeyPressed();
 	}
 
@@ -127,6 +143,18 @@ public class UnitManager : MonoBehaviour {
 		}
 	}
 
+	public void checkUnlockButtons(){
+		if (!unlockedFrozenMorty) {
+			frozenMortyBtn.interactable = false; 	
+		}
+		if (!unlockedKarateMorty) {
+			karateMortyBtn.interactable = false; 
+		}
+		if (!unlockedShadowMorty) {
+			shadowMortyBtn.interactable = false; 
+		}
+	}
+
     public void regularMortyClick()//button for spawning regular morty
     {
 		//if button pressed and gold greater > unit cost, spawn unit 
@@ -137,21 +165,42 @@ public class UnitManager : MonoBehaviour {
     }
 
 	public void frozenMortyClick(){
-		if (gold >= frozenMortyCost){
+		if (!unlockedFrozenMorty) { //unlock frozen morty
+			if (gold >= 2 * frozenMortyCost) {
+				unlockedFrozenMorty = true; 
+				gold -= 2 * frozenMortyCost;
+				frozenMortyBtn.interactable = true;
+			}
+		}
+		else if (gold >= frozenMortyCost){
 			SpawnFrozenMorty ();
 			StartCoroutine (spawnDelay (frozenMortyBtn, 3));
 		}
 	}
 
 	public void karateMortyClick(){
-		if (gold >= karateMortyCost){
+		if (!unlockedKarateMorty) { //unlock frozen morty
+			if (gold >= 2 * karateMortyCost) {
+				unlockedKarateMorty = true; 
+				gold -= 2 * karateMortyCost;
+				karateMortyBtn.interactable = true;
+			}
+		}
+		else if (gold >= karateMortyCost){
 			SpawnKarateMorty ();
 			StartCoroutine (spawnDelay (karateMortyBtn, 5));
 		}
 	}
 
 	public void shadowMortyClick(){
-		if (gold >= shadowMortyCost){
+		if (!unlockedShadowMorty) { //unlock frozen morty
+			if (gold >= 2 * shadowMortyCost) {
+				unlockedShadowMorty = true; 
+				gold -= 2 * shadowMortyCost;
+				shadowMortyBtn.interactable = true;
+			}
+		}
+		else if (gold >= shadowMortyCost){
 			SpawnShadowMorty ();
 			StartCoroutine (spawnDelay (shadowMortyBtn, 7));
 		}
@@ -238,6 +287,21 @@ public class UnitManager : MonoBehaviour {
 		}
 	
 	}
+
+	public void displayFlash(Vector3 allyPosition, Vector3 enemyPosition) {
+		Vector3 flashPosition = (allyPosition + enemyPosition) / 2;
+		StartCoroutine (playFlash (flashPosition));
+
+	}
+	IEnumerator playFlash(Vector3 flashPosition){
+		GameObject flash = GameObject.Instantiate(flashPrefab);
+		flash.transform.localScale = new Vector3(0.2f, 0.2f, 0.2f);
+		flash.transform.position = flashPosition;
+		yield return new WaitForSeconds (0.333f);
+		Destroy (flash);
+	}
 		
+
+
 }
 	
