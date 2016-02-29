@@ -28,8 +28,10 @@ public class karateMortyScript : MonoBehaviour {
 		{
 			if (collision.collider.gameObject.name.Contains("flargo")) {
 				flargoObj = collision.collider.gameObject.GetComponent<flargoScript>();
+
 				flargoObj.current_health -= damage;
 				current_health -= flargoObj.damage;
+
 				flargoObj.transform.position += new Vector3 (0.5f, 0f, 0f);
 				this.transform.position += new Vector3 (-0.5f, 0f, 0f);
 
@@ -62,10 +64,12 @@ public class karateMortyScript : MonoBehaviour {
 				mermaidObj = collision.collider.gameObject.GetComponent<mermaidScript>();
 				mermaidObj.current_health -= damage * 2; //karate is better against prax enemy unity
 				current_health -= mermaidObj.damage;
+
 				mermaidObj.transform.position += new Vector3 (0.5f, 0f, 0f);
 				this.transform.position += new Vector3 (-0.5f, 0f, 0f);
 
 				Dead();
+
 				if (mermaidObj.current_health <= 0) {
 					Destroy(collision.collider.gameObject);
 					unitManagerScript.enemyUnitKilled();
@@ -89,5 +93,10 @@ public class karateMortyScript : MonoBehaviour {
 		if (current_health <= 0) {
 			Destroy (gameObject);
 		}
+	}
+
+	void displayFlash(Vector3 allyPosition, Vector3 enemyPosition) {
+		Vector3 midpoint = (allyPosition + enemyPosition) / 2;
+
 	}
 }
