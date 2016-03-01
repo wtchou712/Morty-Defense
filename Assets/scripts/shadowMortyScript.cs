@@ -9,8 +9,8 @@ public class shadowMortyScript : MonoBehaviour {
 	public praxScript praxObj;
 	public mermaidScript mermaidObj;
 
-	public int current_health = 50;
-	public int damage = 50;
+	public int current_health = 100;
+	public int damage = 100;
 	// Use this for initialization
 	void Start () {
 		unitManagerScript = Camera.main.GetComponent<UnitManager>();

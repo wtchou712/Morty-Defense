@@ -3,7 +3,7 @@ using System.Collections;
 
 public class mermaidScript : MonoBehaviour {
 	public AllyTowerScript tempScript;
-	public int current_health = 40;
+	public int current_health = 60;
 	public int damage = 40;
 	// Use this for initialization
 	void Start () {

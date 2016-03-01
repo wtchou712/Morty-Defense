@@ -14,7 +14,6 @@ public class regularMortyScript : MonoBehaviour {
 	// Use this for initialization
 	void Start () {
 		unitManagerScript = Camera.main.GetComponent<UnitManager>();
-		//Debug.Log ("Layer: " + gameObject.layer);
 		Physics.IgnoreLayerCollision (8, 8);
 	}
 	

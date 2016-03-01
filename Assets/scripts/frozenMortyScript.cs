@@ -9,7 +9,7 @@ public class frozenMortyScript : MonoBehaviour {
 	public mermaidScript mermaidObj;
 
 
-	public int current_health = 50;
+	public int current_health = 60;
 	public int damage = 30;
 
 	// Use this for initialization
@@ -29,7 +29,8 @@ public class frozenMortyScript : MonoBehaviour {
 		{
 			if (collision.collider.gameObject.name.Contains("flargo")) {
 				flargoObj = collision.collider.gameObject.GetComponent<flargoScript>();
-				flargoObj.current_health -= damage * 2; //frozen morty is better against flargo
+				damage = damage * 2; 
+				flargoObj.current_health -= damage; //frozen morty is better against flargo
 				current_health -= flargoObj.damage;
 
 				unitManagerScript.displayFlash (flargoObj.transform.position, this.transform.position);
@@ -63,7 +64,7 @@ public class frozenMortyScript : MonoBehaviour {
 			if (collision.collider.gameObject.name.Contains("mermaid"))
 			{
 				mermaidObj = collision.collider.gameObject.GetComponent<mermaidScript>();
-				mermaidObj.current_health -= damage * 2; //karate is better against prax enemy unity
+				mermaidObj.current_health -= damage; 
 				current_health -= mermaidObj.damage;
 
 				unitManagerScript.displayFlash (mermaidObj.transform.position, this.transform.position);

@@ -4,7 +4,7 @@ using System.Collections;
 public class praxScript : MonoBehaviour {
 	//public AllyTowerScript tempScript = gameObject.AddComponent<AllyTowerScript>();
 	public AllyTowerScript tempScript;
-	public int current_health = 80;
+	public int current_health = 100;
 	public int damage = 10;
 	// Use this for initialization
 	void Start () {
