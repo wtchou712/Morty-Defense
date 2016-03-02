@@ -10,7 +10,7 @@ public class frozenMortyScript : MonoBehaviour {
 
 
 	public int current_health = 40;
-	public int damage = 5;
+	public int damage = 10;
 
 	// Use this for initialization
 	void Start () {
@@ -20,7 +20,7 @@ public class frozenMortyScript : MonoBehaviour {
 
 	// Update is called once per frame
 	void Update () {
-		this.transform.Translate (new Vector3 (0.5f * Time.deltaTime, 0f, 0f));
+		this.transform.Translate (new Vector3 (0.4f * Time.deltaTime, 0f, 0f));
 	}
 
 	void OnCollisionEnter(Collision collision)

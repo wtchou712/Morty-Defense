@@ -20,7 +20,7 @@ public class regularMortyScript : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-		this.transform.Translate (new Vector3 (0.4f * Time.deltaTime, 0f, 0f));
+		this.transform.Translate (new Vector3 (0.2f * Time.deltaTime, 0f, 0f));
 	}
 
     void OnCollisionEnter(Collision collision)
