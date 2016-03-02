@@ -302,7 +302,6 @@ public class UnitManager : MonoBehaviour {
 	}
 
 	public void checkButtonEnabled(){
-		Debug.Log ("reg morty cooldown: " + regMortyCooldown);
 		if (gold < regularMortyCost || regMortyBtn.cooldown) {
 			regMortyBtn.btn.interactable = false; 
 		} 
