@@ -4,7 +4,7 @@ using System.Collections;
 public class flargoScript : MonoBehaviour {
 	public AllyTowerScript tempScript;
 	public int current_health = 20;
-	public int damage = 10;
+	public int damage = 5;
 
 	// Use this for initialization
 	void Start () {
@@ -14,7 +14,7 @@ public class flargoScript : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-        this.transform.Translate(new Vector3(-0.5f * Time.deltaTime, 0f, 0f));
+        this.transform.Translate(new Vector3(-0.3f * Time.deltaTime, 0f, 0f));
     }
 
 	void OnCollisionEnter(Collision collision)

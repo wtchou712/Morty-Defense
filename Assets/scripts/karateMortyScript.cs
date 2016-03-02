@@ -9,7 +9,7 @@ public class karateMortyScript : MonoBehaviour {
 	public mermaidScript mermaidObj;
 
 	public int current_health = 50;
-	public int damage = 50;
+	public int damage = 25;
 
 	// Use this for initialization
 	void Start () {
@@ -19,7 +19,7 @@ public class karateMortyScript : MonoBehaviour {
 
 	// Update is called once per frame
 	void Update () {
-		this.transform.Translate (new Vector3 (1f * Time.deltaTime, 0f, 0f));
+		this.transform.Translate (new Vector3 (0.8f * Time.deltaTime, 0f, 0f));
 	}
 
 	void OnCollisionEnter(Collision collision)

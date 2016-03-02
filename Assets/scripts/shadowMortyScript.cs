@@ -10,7 +10,7 @@ public class shadowMortyScript : MonoBehaviour {
 	public mermaidScript mermaidObj;
 
 	public int current_health = 50;
-	public int damage = 50;
+	public int damage = 15;
 	// Use this for initialization
 	void Start () {
 		unitManagerScript = Camera.main.GetComponent<UnitManager>();
@@ -20,7 +20,7 @@ public class shadowMortyScript : MonoBehaviour {
 
 	// Update is called once per frame
 	void Update () {
-		this.transform.Translate (new Vector3 (1f * Time.deltaTime, 0f, 0f));
+		this.transform.Translate (new Vector3 (0.5f * Time.deltaTime, 0f, 0f));
 	}
 
 	void OnCollisionEnter(Collision collision)

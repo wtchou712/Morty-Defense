@@ -17,6 +17,11 @@ public class UnitManager : MonoBehaviour {
 	public bool unlockedKarateMorty = false;
 	public bool unlockedShadowMorty = false;
 
+	public bool regMortyCooldown = false; 
+	public bool frozenMortyCooldown = false; 
+	public bool karateMortyCooldown = false; 
+	public bool shadowMortyCooldown = false; 
+
 	public Button regMortyBtn;
 	public Button frozenMortyBtn;
 	public Button karateMortyBtn;
@@ -43,10 +48,6 @@ public class UnitManager : MonoBehaviour {
 
 
 	double goldGenTime = 0;
-    double spawnFlargoTime = 0; 
-	double spawnPraxTime = 0; 
-	double spawnMermaidTime = 0;
-	//double spawnShadowTime = 0;
 
 	public int currentWave = 1; 
 	public Text waveText; 
@@ -79,6 +80,9 @@ public class UnitManager : MonoBehaviour {
 		UpdateGoldAmount();
 		checkUnlockButtons ();
 		checkKeyPressed();
+
+//		if (!regMortyBtn.interactable)
+//			Debug.Log ("cooldown = false");
 	}
 
 	private void SpawnRegularMorty(){
@@ -107,25 +111,6 @@ public class UnitManager : MonoBehaviour {
 		shadowMorty.transform.position = new Vector3 (-7, Random.Range (-3.8f, -4.2f), 0);
 		gold -= shadowMortyCost;
 	}
-    
-    private void spawnEnemy()
-    {
-	    if (spawnFlargoTime > 3.0f)
-	    {
-	        spawnFlargoTime -= 3.0f;
-	        SpawnFlargo();
-	    }
-		if (spawnPraxTime > 5.0f) {
-			spawnPraxTime -= 5.0f;
-			SpawnPrax ();
-		}
-		if (spawnMermaidTime > 7.0f) {
-			spawnMermaidTime -= 7.0f;
-			SpawnMermaid();
-		}
-        else { }
-		enemySpawnCount++;
-    }
 
     private void SpawnFlargo(){ 
 		GameObject flargo = GameObject.Instantiate(flargoPrefab);
@@ -218,11 +203,15 @@ public class UnitManager : MonoBehaviour {
 		}
 	}
 
-
 	IEnumerator spawnDelay(Button btn, int delayTime){
-		btn.interactable = false; 
+		setButton(btn, false);
 		yield return new WaitForSeconds(delayTime);
-		btn.interactable = true;
+		setButton (btn, true);
+	}
+
+	public void setButton(Button btn, bool state){
+		btn.interactable = state;	
+		Debug.Log ("callback successful");
 	}
 
 	public void UpdateGoldAmount() {
@@ -259,8 +248,14 @@ public class UnitManager : MonoBehaviour {
 	IEnumerator spawnWave(){
 		//enemyUnits = currentWave * 10
 		//random(1, currentWave) for which enemy to spawn
-		for (int i = 0; i < currentWave * 10; i++) {
-			int unitID = Random.Range (1, currentWave + 1); 
+		int clusterCount = 0;
+		int unitID = Random.Range(1, currentWave + 1);
+		while (enemySpawnCount < currentWave * 9) {
+			if (clusterCount == 3) {
+				clusterCount = 0;
+				unitID = Random.Range(1, currentWave + 1);
+				yield return new WaitForSeconds(6);
+			}
 			if (unitID == 1) {
 				SpawnFlargo ();
 			} else if (unitID == 2) {
@@ -268,8 +263,8 @@ public class UnitManager : MonoBehaviour {
 			} else if (unitID == 3) {
 				SpawnMermaid ();
 			}
-			//add more enemy unit IDs here
 			yield return new WaitForSeconds(2);
+			clusterCount++;
 			enemySpawnCount++;
 		}
 	}
@@ -282,19 +277,19 @@ public class UnitManager : MonoBehaviour {
 			waveText.text = "Game over!"; 
 		}
 		waveText.enabled = true;
-	}
+	} 
 
 	public void checkKeyPressed() {
-		if(Input.GetButtonDown("SpawnRegularMorty")){
+		if(Input.GetButtonDown("SpawnRegularMorty") && regMortyBtn.interactable == true){
 			regularMortyClick();
 		}
-		if(Input.GetButtonDown("SpawnFrozenMorty")){
+		if(Input.GetButtonDown("SpawnFrozenMorty") && frozenMortyBtn.interactable == true){
 			frozenMortyClick();
 		}
-		if(Input.GetButtonDown("SpawnKarateMorty")){
+		if(Input.GetButtonDown("SpawnKarateMorty") && karateMortyBtn.interactable == true){
 			karateMortyClick();
 		}
-		if(Input.GetButtonDown("SpawnShadowMorty")){
+		if(Input.GetButtonDown("SpawnShadowMorty") && shadowMortyBtn.interactable == true){
 			shadowMortyClick();
 		}
 	
