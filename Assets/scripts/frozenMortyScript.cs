@@ -8,9 +8,10 @@ public class frozenMortyScript : MonoBehaviour {
 	public praxScript praxObj;
 	public mermaidScript mermaidObj;
 
-
 	public int current_health = 40;
-	public int damage = 10;
+	public int damage = 5;
+
+	public Vector3 movementSpeed = new Vector3 (0.4f * Time.deltaTime, 0f, 0f);
 
 	// Use this for initialization
 	void Start () {
@@ -35,6 +36,8 @@ public class frozenMortyScript : MonoBehaviour {
 				unitManagerScript.displayFlash (flargoObj.transform.position, this.transform.position);
 				flargoObj.transform.position += new Vector3 (0.5f, 0f, 0f);
 				this.transform.position += new Vector3 (-0.5f, 0f, 0f);
+
+				collision.collider.gameObject.SendMessage ("slowMovementSpeed");
 
 				Dead ();
 				if (flargoObj.current_health <= 0) {
@@ -88,10 +91,12 @@ public class frozenMortyScript : MonoBehaviour {
 			this.transform.position += new Vector3 (-0.5f, 0f, 0f);
 		}
 	}
+		
 
 	void Dead() {
 		if (current_health <= 0) {
 			Destroy (gameObject);
 		}
 	}
+		
 }

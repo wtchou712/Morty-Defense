@@ -92,6 +92,8 @@ public class regularMortyScript : MonoBehaviour {
 		}
 			
     }
+
+
 	void Dead() {
 		if (current_health <= 0) {
 			Destroy (gameObject);

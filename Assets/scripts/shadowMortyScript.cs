@@ -11,6 +11,9 @@ public class shadowMortyScript : MonoBehaviour {
 
 	public int current_health = 40;
 	public int damage = 10;
+
+	public Vector3 movementSpeed = new Vector3 (0.4f * Time.deltaTime, 0f, 0f);
+
 	// Use this for initialization
 	void Start () {
 		unitManagerScript = Camera.main.GetComponent<UnitManager>();
@@ -91,6 +94,7 @@ public class shadowMortyScript : MonoBehaviour {
 		}
 
 	}
+
 	void Dead() {
 		if (current_health <= 0) {
 			Destroy (gameObject);

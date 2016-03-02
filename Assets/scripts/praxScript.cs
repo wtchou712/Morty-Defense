@@ -6,6 +6,9 @@ public class praxScript : MonoBehaviour {
 	public AllyTowerScript tempScript;
 	public int current_health = 100;
 	public int damage = 5;
+
+	public float speedFactor = -0.1f;
+
 	// Use this for initialization
 	void Start () {
 		Physics.IgnoreLayerCollision (9, 9);
@@ -13,7 +16,7 @@ public class praxScript : MonoBehaviour {
 
 	// Update is called once per frame
 	void Update () {
-		this.transform.Translate(new Vector3(-0.1f * Time.deltaTime, 0f, 0f));
+		moveUnit (Time.deltaTime);
 	}
 
 	void OnCollisionEnter(Collision collision)
@@ -25,5 +28,22 @@ public class praxScript : MonoBehaviour {
 			tempScript.decreaseHealth(5f);
 			this.transform.position += new Vector3 (0.5f, 0f, 0f);
 		}
+	}
+
+	public void moveUnit(float time){
+		this.transform.Translate(new Vector3 (speedFactor * time, 0f, 0f));
+	}
+
+	public void slowMovementSpeed(){
+		StartCoroutine (halfSpeed ());
+	}
+
+	IEnumerator halfSpeed(){
+		float prevFactor = speedFactor;
+		//speedFactor = prevFactor / 2;
+		speedFactor = 0;
+		yield return new WaitForSeconds (2f);
+		speedFactor = prevFactor;
+
 	}
 }

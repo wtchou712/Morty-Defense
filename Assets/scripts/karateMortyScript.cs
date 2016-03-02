@@ -11,6 +11,7 @@ public class karateMortyScript : MonoBehaviour {
 	public int current_health = 40;
 	public int damage = 25;
 
+	public Vector3 movementSpeed = new Vector3 (0.6f * Time.deltaTime, 0f, 0f);
 	// Use this for initialization
 	void Start () {
 		unitManagerScript = Camera.main.GetComponent<UnitManager>();

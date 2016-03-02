@@ -6,15 +6,18 @@ public class flargoScript : MonoBehaviour {
 	public int current_health = 20;
 	public int damage = 5;
 
+	public float speedFactor = -0.2f;
+
 	// Use this for initialization
 	void Start () {
 		Physics.IgnoreLayerCollision (9, 9);
 
 	}
-	
+
 	// Update is called once per frame
 	void Update () {
-        this.transform.Translate(new Vector3(-0.2f * Time.deltaTime, 0f, 0f));
+		moveUnit (Time.deltaTime);
+		//this.transform.Translate(new Vector3 (-0.2f * Time.deltaTime, 0f, 0f));
     }
 
 	void OnCollisionEnter(Collision collision)
@@ -28,4 +31,22 @@ public class flargoScript : MonoBehaviour {
 			this.transform.position += new Vector3 (0.5f, 0f, 0f);
 		}
 	}
+
+	public void moveUnit(float time){
+		this.transform.Translate(new Vector3 (speedFactor * time, 0f, 0f));
+	}
+
+	public void slowMovementSpeed(){
+		StartCoroutine (halfSpeed ());
+	}
+
+	IEnumerator halfSpeed(){
+		float prevFactor = speedFactor;
+		//speedFactor = prevFactor / 2;
+		speedFactor = 0;
+		yield return new WaitForSeconds (2f);
+		speedFactor = prevFactor;
+
+	}
+
 }
