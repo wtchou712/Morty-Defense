@@ -20,12 +20,17 @@ public class UnitManager : MonoBehaviour {
 	public bool regMortyCooldown = false; 
 	public bool frozenMortyCooldown = false; 
 	public bool karateMortyCooldown = false; 
-	public bool shadowMortyCooldown = false; 
+	public bool shadowMortyCooldown = false;
 
-	public Button regMortyBtn;
-	public Button frozenMortyBtn;
-	public Button karateMortyBtn;
-	public Button shadowMortyBtn;
+	public Button regMortyButton;
+	public Button frozenMortyButton;
+	public Button karateMortyButton;
+	public Button shadowMortyButton;
+
+	public mortyButton regMortyBtn;
+	public mortyButton frozenMortyBtn;
+	public mortyButton karateMortyBtn;
+	public mortyButton shadowMortyBtn;
 
 	public GameObject regMortyLabel;
 	public GameObject frozenMortyLabel;
@@ -57,6 +62,12 @@ public class UnitManager : MonoBehaviour {
 
 	// Use this for initialization
 	void Start () {
+
+		regMortyBtn = new mortyButton(regMortyButton);
+		frozenMortyBtn = new mortyButton (frozenMortyButton);
+		karateMortyBtn = new mortyButton (karateMortyButton);
+		shadowMortyBtn = new mortyButton (shadowMortyButton);
+
 		gold = 30;
 		waveText.enabled = false;
 		StartCoroutine(spawnWave());
@@ -78,11 +89,20 @@ public class UnitManager : MonoBehaviour {
         goldGenTime += Time.deltaTime;
 		generateGold();
 		UpdateGoldAmount();
-		checkUnlockButtons ();
+		//checkUnlockButtons ();
 		checkKeyPressed();
+		checkButtonEnabled ();
 
-//		if (!regMortyBtn.interactable)
-//			Debug.Log ("cooldown = false");
+	}
+
+	public class mortyButton{
+		public Button btn;
+		public bool cooldown = false;
+		public bool unlocked = false; 
+
+		public mortyButton(Button mortyBtn){
+			btn = mortyBtn;
+		}
 	}
 
 	private void SpawnRegularMorty(){
@@ -137,18 +157,6 @@ public class UnitManager : MonoBehaviour {
 		}
 	}
 
-	public void checkUnlockButtons(){
-		if (!unlockedFrozenMorty) {
-			frozenMortyBtn.interactable = false; 
-		}
-		if (!unlockedKarateMorty) {
-			karateMortyBtn.interactable = false; 
-		}
-		if (!unlockedShadowMorty) {
-			shadowMortyBtn.interactable = false; 
-		}
-	}
-
     public void regularMortyClick()//button for spawning regular morty
     {
 		//if button pressed and gold greater > unit cost, spawn unit 
@@ -163,7 +171,7 @@ public class UnitManager : MonoBehaviour {
 			if (gold >= 2 * frozenMortyCost) {
 				unlockedFrozenMorty = true; 
 				gold -= 2 * frozenMortyCost;
-				frozenMortyBtn.interactable = true;
+				frozenMortyBtn.btn.interactable = true;
 				frozenMortyLabel.GetComponent<Text> ().text = frozenMortyText;
 			}
 		}
@@ -178,7 +186,7 @@ public class UnitManager : MonoBehaviour {
 			if (gold >= 2 * karateMortyCost) {
 				unlockedKarateMorty = true; 
 				gold -= 2 * karateMortyCost;
-				karateMortyBtn.interactable = true;
+				karateMortyBtn.btn.interactable = true;
 				karateMortyLabel.GetComponent<Text> ().text = karateMortyText;
 			}
 		}
@@ -193,7 +201,7 @@ public class UnitManager : MonoBehaviour {
 			if (gold >= 2 * shadowMortyCost) {
 				unlockedShadowMorty = true; 
 				gold -= 2 * shadowMortyCost;
-				shadowMortyBtn.interactable = true;
+				shadowMortyBtn.btn.interactable = true;
 				shadowMortyLabel.GetComponent<Text> ().text = shadowMortyText;
 			}
 		}
@@ -203,15 +211,15 @@ public class UnitManager : MonoBehaviour {
 		}
 	}
 
-	IEnumerator spawnDelay(Button btn, int delayTime){
+	IEnumerator spawnDelay(mortyButton btn, int delayTime){
 		setButton(btn, false);
 		yield return new WaitForSeconds(delayTime);
 		setButton (btn, true);
 	}
 
-	public void setButton(Button btn, bool state){
-		btn.interactable = state;	
-		Debug.Log ("callback successful");
+	public void setButton(mortyButton button, bool state){
+		button.btn.interactable = state;
+		button.cooldown = !state; 
 	}
 
 	public void UpdateGoldAmount() {
@@ -220,7 +228,6 @@ public class UnitManager : MonoBehaviour {
 
 	public void rewardGold(int goldReward){
 		gold += goldReward;
-		//Debug.Log ("gold rewarded : " + goldReward);
 	}
 
 	public void enemyUnitKilled(){
@@ -280,19 +287,43 @@ public class UnitManager : MonoBehaviour {
 	} 
 
 	public void checkKeyPressed() {
-		if(Input.GetButtonDown("SpawnRegularMorty") && regMortyBtn.interactable == true){
+		if(Input.GetButtonDown("SpawnRegularMorty") && regMortyBtn.btn.interactable == true){
 			regularMortyClick();
 		}
-		if(Input.GetButtonDown("SpawnFrozenMorty") && frozenMortyBtn.interactable == true){
+		if(Input.GetButtonDown("SpawnFrozenMorty") && (frozenMortyBtn.btn.interactable == true || !unlockedFrozenMorty)){
 			frozenMortyClick();
 		}
-		if(Input.GetButtonDown("SpawnKarateMorty") && karateMortyBtn.interactable == true){
+		if(Input.GetButtonDown("SpawnKarateMorty") && (karateMortyBtn.btn.interactable == true || !unlockedKarateMorty)){
 			karateMortyClick();
 		}
-		if(Input.GetButtonDown("SpawnShadowMorty") && shadowMortyBtn.interactable == true){
+		if(Input.GetButtonDown("SpawnShadowMorty") && (shadowMortyBtn.btn.interactable == true || !unlockedShadowMorty)){
 			shadowMortyClick();
 		}
-	
+	}
+
+	public void checkButtonEnabled(){
+		Debug.Log ("reg morty cooldown: " + regMortyCooldown);
+		if (gold < regularMortyCost || regMortyBtn.cooldown) {
+			regMortyBtn.btn.interactable = false; 
+		} 
+		else {
+			regMortyBtn.btn.interactable = true;
+		}
+		if (gold < frozenMortyCost || !unlockedFrozenMorty || frozenMortyBtn.cooldown) {
+			frozenMortyBtn.btn.interactable = false; 
+		} else {
+			frozenMortyBtn.btn.interactable = true;
+		}
+		if (gold < karateMortyCost || !unlockedKarateMorty || karateMortyBtn.cooldown) {
+			karateMortyBtn.btn.interactable = false; 
+		} else {
+			karateMortyBtn.btn.interactable = true;
+		}
+		if (gold < shadowMortyCost || !unlockedShadowMorty || shadowMortyBtn.cooldown) {
+			shadowMortyBtn.btn.interactable = false; 
+		} else {
+			shadowMortyBtn.btn.interactable = true;
+		}
 	}
 
 	public void displayFlash(Vector3 allyPosition, Vector3 enemyPosition) {
