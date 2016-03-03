@@ -270,8 +270,7 @@ public class UnitManager : MonoBehaviour {
 				yield return new WaitForSeconds(6);
 			}
 			if (unitID == 1) {
-//				SpawnFlargo ();
-				SpawnGoob ();
+				SpawnFlargo ();
 			} else if (unitID == 2) {
 				SpawnPrax ();
 			} else if (unitID == 3) {
