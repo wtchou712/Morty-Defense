@@ -12,6 +12,7 @@ public class UnitManager : MonoBehaviour {
 	public GameObject mermaidPrefab;
 	public GameObject shadowPrefab;
 	public GameObject flashPrefab;
+	public GameObject goobPrefab;
 
 	public bool unlockedFrozenMorty = false;
 	public bool unlockedKarateMorty = false;
@@ -149,6 +150,11 @@ public class UnitManager : MonoBehaviour {
 		mermaid.transform.position = new Vector3(7, Random.Range (-3.8f, -4.2f), 0);
 	}
 		
+	private void SpawnGoob() {
+		GameObject goob = GameObject.Instantiate(goobPrefab);
+		goob.transform.localScale = new Vector3(0.5f, 0.5f, 0.5f);
+		goob.transform.position = new Vector3(7, Random.Range (-3.8f, -4.2f), 0);
+	}
 
 	private void generateGold() { 
 		while (goldGenTime > 1.0f) {
@@ -264,12 +270,16 @@ public class UnitManager : MonoBehaviour {
 				yield return new WaitForSeconds(6);
 			}
 			if (unitID == 1) {
-				SpawnFlargo ();
+//				SpawnFlargo ();
+				SpawnGoob ();
 			} else if (unitID == 2) {
 				SpawnPrax ();
 			} else if (unitID == 3) {
 				SpawnMermaid ();
+			} else if (unitID == 4) {
+				SpawnGoob ();
 			}
+
 			yield return new WaitForSeconds(2);
 			clusterCount++;
 			enemySpawnCount++;

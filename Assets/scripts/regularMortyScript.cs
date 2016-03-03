@@ -8,6 +8,7 @@ public class regularMortyScript : MonoBehaviour {
 	public flargoScript flargoObj;
 	public praxScript praxObj;
 	public mermaidScript mermaidObj;
+	public goobScript goobObj;
 
 	public int current_health = 30;
 	public int damage = 5;
@@ -76,6 +77,25 @@ public class regularMortyScript : MonoBehaviour {
 					Destroy(collision.collider.gameObject);
 					unitManagerScript.enemyUnitKilled();
 					unitManagerScript.rewardGold (15);
+				}
+
+			}
+			if (collision.collider.gameObject.name.Contains("goob"))
+			{
+				goobObj = collision.collider.gameObject.GetComponent<goobScript>();
+				goobObj.current_health -= damage;
+				current_health -= goobObj.damage;
+
+				unitManagerScript.displayFlash (goobObj.transform.position, this.transform.position);
+				goobObj.transform.position += new Vector3 (0.5f, 0f, 0f);
+				this.transform.position += new Vector3 (-0.5f, 0f, 0f);
+
+				Dead();
+
+				if (goobObj.current_health <= 0) {
+					Destroy(collision.collider.gameObject);
+					unitManagerScript.enemyUnitKilled();
+					unitManagerScript.rewardGold (30);
 				}
 
 			}

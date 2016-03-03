@@ -51,6 +51,7 @@
      <Compile Include="Assets\scripts\UnitManager.cs" />
      <Compile Include="Assets\scripts\flargoScript.cs" />
      <Compile Include="Assets\scripts\frozenMortyScript.cs" />
+     <Compile Include="Assets\scripts\goobScript.cs" />
      <Compile Include="Assets\scripts\karateMortyScript.cs" />
      <Compile Include="Assets\scripts\mermaidScript.cs" />
      <Compile Include="Assets\scripts\praxScript.cs" />
