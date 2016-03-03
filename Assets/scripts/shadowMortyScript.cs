@@ -88,6 +88,7 @@ public class shadowMortyScript : MonoBehaviour {
 
 			if (collision.collider.gameObject.name.Contains("goob"))
 			{
+				Debug.Log ("colliding with goob");
 				goobObj = collision.collider.gameObject.GetComponent<goobScript>();
 				goobObj.current_health -= damage;
 				current_health -= goobObj.damage;
