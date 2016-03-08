@@ -45,6 +45,7 @@ public class UnitManager : MonoBehaviour {
 	//made gold a static variable 
 	public static int gold; 
 	public Text goldText;
+	public Text currentWaveText;
 	public float SpawnDistance = 50; 
 
 	public int regularMortyCost = 10;
@@ -71,7 +72,7 @@ public class UnitManager : MonoBehaviour {
 
 		gold = 30;
 		waveText.enabled = false;
-		//StartCoroutine(spawnWave());
+		StartCoroutine(spawnWave());
 
 		//set the unlock message
 		frozenMortyText = frozenMortyLabel.GetComponent<Text> ().text;
@@ -90,6 +91,7 @@ public class UnitManager : MonoBehaviour {
         goldGenTime += Time.deltaTime;
 		generateGold();
 		UpdateGoldAmount();
+		UpdateCurrentWave ();
 		//checkUnlockButtons ();
 		checkKeyPressed();
 		checkButtonEnabled ();
@@ -230,6 +232,10 @@ public class UnitManager : MonoBehaviour {
 
 	public void UpdateGoldAmount() {
 		goldText.text = "Gold Amount: " + gold.ToString ();
+	}
+
+	public void UpdateCurrentWave(){
+		currentWaveText.text = "Current Wave: " + currentWave;
 	}
 
 	public void rewardGold(int goldReward){
