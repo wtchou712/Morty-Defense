@@ -57,6 +57,7 @@
      <Compile Include="Assets\scripts\praxScript.cs" />
      <Compile Include="Assets\scripts\regularMortyScript.cs" />
      <Compile Include="Assets\scripts\shadowMortyScript.cs" />
+     <Compile Include="Assets\scripts\wrestlerMortyScript.cs" />
  <Reference Include="UnityEngine.UI">
  <HintPath>/Applications/Unity/Unity.app/Contents/UnityExtensions/Unity/GUISystem/UnityEngine.UI.dll</HintPath>
  </Reference>
