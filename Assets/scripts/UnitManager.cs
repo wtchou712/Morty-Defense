@@ -23,6 +23,9 @@ public class UnitManager : MonoBehaviour {
 	public bool karateMortyCooldown = false; 
 	public bool shadowMortyCooldown = false;
 
+	public bool gameOver = false;
+	public Button restartButton;
+
 	public Button regMortyButton;
 	public Button frozenMortyButton;
 	public Button karateMortyButton;
@@ -71,6 +74,8 @@ public class UnitManager : MonoBehaviour {
 		shadowMortyBtn = new mortyButton (shadowMortyButton);
 
 		gold = 30;
+
+		restartButton.gameObject.SetActive(false);
 		waveText.enabled = false;
 		StartCoroutine(spawnWave());
 
@@ -291,7 +296,7 @@ public class UnitManager : MonoBehaviour {
 		}
 	}
 
-	public void gameOver(bool win){
+	public void displayGameOver(bool win){
 		if (win) {
 			waveText.text = "Player wins!";
 		} 
@@ -299,6 +304,8 @@ public class UnitManager : MonoBehaviour {
 			waveText.text = "Game over!"; 
 		}
 		waveText.enabled = true;
+		gameOver = true;
+		restartButton.gameObject.SetActive (true);
 	} 
 
 	public void checkKeyPressed() {

@@ -23,7 +23,7 @@ public class EnemyTowerScript : MonoBehaviour {
 		//Debug.Log ("decreased HP");
 		currentHealth -= healthLost;
 		if (currentHealth <= 0) {
-			unitManagerScript.gameOver (true);//set true for win
+			unitManagerScript.displayGameOver (true);//set true for win
 			Destroy (gameObject);
 		}
 		float calculatedHealth = currentHealth / maxHealth;
