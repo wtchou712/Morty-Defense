@@ -23,8 +23,9 @@ public class AllyTowerScript : MonoBehaviour {
 		Debug.Log ("decreased HP");
 		currentHealth -= healthLost;
 		if (currentHealth <= 0) {
-			Destroy (gameObject);
+			//Destroy (gameObject);
 			unitManagerScript.displayGameOver (false);
+			currentHealth = maxHealth;
 
 		}
 		float calculatedHealth = currentHealth / maxHealth;

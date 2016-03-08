@@ -6,9 +6,9 @@ public class flargoScript : MonoBehaviour {
 	public int current_health = 20;
 	public int damage = 5;
 
-	public float speedFactor = -0.2f;
+	public float speedFactor = -1.0f;
 	// for testing:
-	//public float speedFactor = -2.5f;
+	//public float speedFactor = -2f;
 
 	// Use this for initialization
 	void Start () {

@@ -63,6 +63,7 @@ public class UnitManager : MonoBehaviour {
 	public Text waveText; 
 	public int enemySpawnCount = 0;
 	public int enemyDeathCount = 0;
+	public int highestWave = 0;
 
 
 	// Use this for initialization
@@ -100,7 +101,55 @@ public class UnitManager : MonoBehaviour {
 		//checkUnlockButtons ();
 		checkKeyPressed();
 		checkButtonEnabled ();
+	}
 
+	public void Restart () {
+
+		var enemyUnits =  GameObject.FindGameObjectsWithTag ("Enemy");
+		var allyUnits = GameObject.FindGameObjectsWithTag ("Ally");
+
+		for(var i = 0 ; i < enemyUnits.Length ; i ++)
+			Destroy(enemyUnits[i]);
+		for(var i = 0 ; i < allyUnits.Length ; i ++)
+			Destroy(allyUnits[i]);
+
+		regMortyBtn = new mortyButton(regMortyButton);
+		frozenMortyBtn = new mortyButton (frozenMortyButton);
+		karateMortyBtn = new mortyButton (karateMortyButton);
+		shadowMortyBtn = new mortyButton (shadowMortyButton);
+
+		unlockedFrozenMorty = false;
+		unlockedKarateMorty = false;
+		unlockedShadowMorty = false;
+
+		regMortyCooldown = false; 
+		frozenMortyCooldown = false; 
+		karateMortyCooldown = false; 
+		shadowMortyCooldown = false;
+
+		goldGenTime = 0;
+
+		currentWave = 1; 
+		enemySpawnCount = 0;
+		enemyDeathCount = 0;
+
+		Time.timeScale = 1.0f;
+		gold = 30;
+
+		restartButton.gameObject.SetActive(false);
+		gameOver = false;
+		waveText.enabled = false;
+		StartCoroutine(spawnWave());
+
+		//set the unlock message
+		frozenMortyText = frozenMortyLabel.GetComponent<Text> ().text;
+		frozenMortyLabel.GetComponent<Text>().text = "Unlock with " + 2*frozenMortyCost + "G\nFrozen Morty (2)\nSlow units for 2 seconds \nStrong against Flargo";
+
+		karateMortyText = karateMortyLabel.GetComponent<Text> ().text;
+		karateMortyLabel.GetComponent<Text>().text = "Unlock with " + 2*karateMortyCost + "G\nKarate Morty (3)\nHigh damage\nSpeed ";
+
+		shadowMortyText = shadowMortyLabel.GetComponent<Text> ().text;
+		shadowMortyLabel.GetComponent<Text>().text = "Unlock with " + 2*shadowMortyCost + "G\nShadow Morty (4)\nAvoid enemy units\nStrong against all ";
 	}
 
 	public class mortyButton{
@@ -306,6 +355,14 @@ public class UnitManager : MonoBehaviour {
 		waveText.enabled = true;
 		gameOver = true;
 		restartButton.gameObject.SetActive (true);
+		Time.timeScale = 0.0f;
+		if (currentWave > highestWave) {
+			highestWave = currentWave;
+			waveText.text += " NEW HIGH SCORE!";
+		}
+
+		StopAllCoroutines ();
+
 	} 
 
 	public void checkKeyPressed() {
@@ -322,6 +379,7 @@ public class UnitManager : MonoBehaviour {
 			shadowMortyClick();
 		}
 	}
+		
 
 	public void checkButtonEnabled(){
 		if (gold < regularMortyCost || regMortyBtn.cooldown) {
