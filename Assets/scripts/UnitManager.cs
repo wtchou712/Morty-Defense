@@ -71,7 +71,7 @@ public class UnitManager : MonoBehaviour {
 
 		gold = 30;
 		waveText.enabled = false;
-		StartCoroutine(spawnWave());
+		//StartCoroutine(spawnWave());
 
 		//set the unlock message
 		frozenMortyText = frozenMortyLabel.GetComponent<Text> ().text;

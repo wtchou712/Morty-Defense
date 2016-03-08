@@ -111,6 +111,9 @@ public class karateMortyScript : MonoBehaviour {
 			tempScript.decreaseHealth(5f);
 			//debug.Log("Attacked enemy tower!");
 			this.transform.position += new Vector3 (-0.5f, 0f, 0f);
+			Destroy(gameObject);
+			unitManagerScript.displayFlash (this.transform.position, this.transform.position);
+			unitManagerScript.rewardGold (250);
 		}
 			
 	}
