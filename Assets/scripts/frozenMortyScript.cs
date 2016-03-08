@@ -12,8 +12,6 @@ public class frozenMortyScript : MonoBehaviour {
 	public int current_health = 40;
 	public int damage = 5;
 
-	public Vector3 movementSpeed = new Vector3 (0.4f * Time.deltaTime, 0f, 0f);
-
 	// Use this for initialization
 	void Start () {
 		unitManagerScript = Camera.main.GetComponent<UnitManager>();
