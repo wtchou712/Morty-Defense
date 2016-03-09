@@ -6,7 +6,7 @@ public class mermaidScript : MonoBehaviour {
 	public int current_health = 40;
 	public int damage = 40;
 
-	public float speedFactor = -0.5f;
+	public float speedFactor = -1.5f;
 	// Use this for initialization
 	void Start () {
 		Physics.IgnoreLayerCollision (9, 9);

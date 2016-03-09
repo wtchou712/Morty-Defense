@@ -7,9 +7,6 @@ public class flargoScript : MonoBehaviour {
 	public int damage = 5;
 
 	public float speedFactor = -1.0f;
-	// for testing:
-	//public float speedFactor = -2f;
-
 	// Use this for initialization
 	void Start () {
 		Physics.IgnoreLayerCollision (9, 9);
@@ -19,7 +16,6 @@ public class flargoScript : MonoBehaviour {
 	// Update is called once per frame
 	void Update () {
 		moveUnit (Time.deltaTime);
-		//this.transform.Translate(new Vector3 (-0.2f * Time.deltaTime, 0f, 0f));
     }
 
 	void OnCollisionEnter(Collision collision)
