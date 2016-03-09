@@ -135,12 +135,6 @@ public class UnitManager : MonoBehaviour {
 		for(var i = 0 ; i < allyUnits.Length ; i ++)
 			Destroy(allyUnits[i]);
 
-//		regMortyBtn = new mortyButton(regMortyButton);
-//		frozenMortyBtn = new mortyButton (frozenMortyButton);
-//		karateMortyBtn = new mortyButton (karateMortyButton);
-//		shadowMortyBtn = new mortyButton (shadowMortyButton);
-//		wrestlerMortyBtn = new mortyButton (wrestlerrMortyButton);
-
 		unlockedFrozenMorty = false;
 		unlockedKarateMorty = false;
 		unlockedShadowMorty = false;
