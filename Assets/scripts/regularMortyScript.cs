@@ -15,7 +15,6 @@ public class regularMortyScript : MonoBehaviour {
 	// Use this for initialization
 	void Start () {
 		unitManagerScript = Camera.main.GetComponent<UnitManager>();
-		//Debug.Log ("Layer: " + gameObject.layer);
 		Physics.IgnoreLayerCollision (8, 8);
 	}
 	
@@ -106,7 +105,6 @@ public class regularMortyScript : MonoBehaviour {
 		{
 			tempScript = collision.collider.gameObject.GetComponent<EnemyTowerScript>();
 			tempScript.decreaseHealth(5f);
-			//Debug.Log("Attacked enemy tower!");
 			this.transform.position += new Vector3 (-0.5f, 0f, 0f);
 			Destroy(gameObject);
 			unitManagerScript.displayFlash (this.transform.position, this.transform.position);

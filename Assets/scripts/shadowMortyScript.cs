@@ -32,20 +32,6 @@ public class shadowMortyScript : MonoBehaviour {
 			
 			if (collision.collider.gameObject.name.Contains("flargo")) {
 				Physics.IgnoreCollision(collision.collider.gameObject.GetComponent<Collider>(),GetComponent<Collider>());
-//				flargoObj = collision.collider.gameObject.GetComponent<flargoScript>();
-//				flargoObj.current_health -= damage;
-//				current_health -= flargoObj.damage;
-//
-//				unitManagerScript.displayFlash (flargoObj.transform.position, this.transform.position);
-//				flargoObj.transform.position += new Vector3 (0.5f, 0f, 0f);
-//				this.transform.position += new Vector3 (-0.5f, 0f, 0f);
-//
-//				Dead ();
-//				if (flargoObj.current_health <= 0) {
-//					Destroy(collision.collider.gameObject);
-//					unitManagerScript.enemyUnitKilled();
-//					unitManagerScript.rewardGold (10);
-//				}
 			}
 			if (collision.collider.gameObject.name.Contains("prax"))
 			{
@@ -67,21 +53,6 @@ public class shadowMortyScript : MonoBehaviour {
 			if (collision.collider.gameObject.name.Contains("mermaid"))
 			{
 				Physics.IgnoreCollision(collision.collider.gameObject.GetComponent<Collider>(),GetComponent<Collider>());
-//				mermaidObj = collision.collider.gameObject.GetComponent<mermaidScript>();
-//				mermaidObj.current_health -= damage; 
-//				current_health -= mermaidObj.damage;
-//
-//				unitManagerScript.displayFlash (mermaidObj.transform.position, this.transform.position);
-//				mermaidObj.transform.position += new Vector3 (0.5f, 0f, 0f);
-//				this.transform.position += new Vector3 (-0.5f, 0f, 0f);
-//
-//				Dead();
-//				if (mermaidObj.current_health <= 0) {
-//					Destroy(collision.collider.gameObject);
-//					unitManagerScript.enemyUnitKilled();
-//					unitManagerScript.rewardGold (15);
-//				}
-
 			}
 
 			if (collision.collider.gameObject.name.Contains("goob"))

@@ -38,7 +38,6 @@ public class mermaidScript : MonoBehaviour {
 
 	IEnumerator halfSpeed(){
 		float prevFactor = speedFactor;
-		//speedFactor = prevFactor / 2;
 		speedFactor = 0;
 		yield return new WaitForSeconds (2f);
 		speedFactor = prevFactor;
