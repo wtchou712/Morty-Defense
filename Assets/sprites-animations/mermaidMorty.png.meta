@@ -1,6 +1,6 @@
 fileFormatVersion: 2
 guid: 734fcf8d691da41789d5370d31940129
-timeCreated: 1456339626
+timeCreated: 1457536098
 licenseType: Free
 TextureImporter:
   fileIDToRecycleName:
@@ -10,6 +10,7 @@ TextureImporter:
     21300006: mermaidMortySide2
     21300008: mermaidMortySide3
     21300010: mermaidMortySide4
+    21300012: mermaidMortyFront
   serializedVersion: 2
   mipmaps:
     mipMapMode: 0
@@ -130,6 +131,26 @@ TextureImporter:
         - {x: 42, y: -53.5}
         - {x: 47, y: -17.5}
         - {x: 47, y: 53.5}
+    - name: mermaidMortyFront
+      rect:
+        serializedVersion: 2
+        x: 21
+        y: 338
+        width: 92
+        height: 126
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -46, y: 5}
+        - {x: -46, y: -44}
+        - {x: -33, y: -63}
+        - {x: 38, y: -63}
+        - {x: 46, y: -60}
+        - {x: 46, y: 47}
+        - {x: 42, y: 63}
+        - {x: -9, y: 63}
+        - {x: -36, y: 33}
     outline: []
   spritePackingTag: 
   userData: 

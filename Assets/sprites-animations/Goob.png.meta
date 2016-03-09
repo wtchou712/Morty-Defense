@@ -1,6 +1,6 @@
 fileFormatVersion: 2
 guid: b6176ea88cffe490eae3315c628513cc
-timeCreated: 1456965447
+timeCreated: 1457536134
 licenseType: Free
 TextureImporter:
   fileIDToRecycleName:
@@ -8,6 +8,7 @@ TextureImporter:
     21300002: GoobSide2
     21300004: GoobSide3
     21300006: GoobSide4
+    21300008: goodFront
   serializedVersion: 2
   mipmaps:
     mipMapMode: 0
@@ -135,6 +136,26 @@ TextureImporter:
         - {x: 61, y: -17.5}
         - {x: 61, y: 30.5}
         - {x: 51, y: 49.5}
+    - name: goodFront
+      rect:
+        serializedVersion: 2
+        x: 6
+        y: 337
+        width: 122
+        height: 121
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: 47, y: 60.5}
+        - {x: -48, y: 60.5}
+        - {x: -61, y: 41.5}
+        - {x: -61, y: -55.5}
+        - {x: -45, y: -60.5}
+        - {x: 45, y: -60.5}
+        - {x: 54, y: -47.5}
+        - {x: 61, y: -13.5}
+        - {x: 61, y: 41.5}
     outline: []
   spritePackingTag: 
   userData: 
