@@ -6,7 +6,7 @@ public class goobScript : MonoBehaviour {
 	public int current_health = 80;
 	public int damage = 40;
 
-	public float speedFactor = -0.7f;
+	public float speedFactor = -0.5f;
 
 	// Use this for initialization
 	void Start () {

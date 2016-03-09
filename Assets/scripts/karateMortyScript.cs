@@ -30,7 +30,7 @@ public class karateMortyScript : MonoBehaviour {
 			if (collision.collider.gameObject.name.Contains("flargo")) {
 				flargoObj = collision.collider.gameObject.GetComponent<flargoScript>();
 
-				flargoObj.current_health -= damage;
+				flargoObj.current_health -= damage * 2;
 				current_health -= flargoObj.damage;
 
 				unitManagerScript.displayFlash (flargoObj.transform.position, this.transform.position);
@@ -66,7 +66,7 @@ public class karateMortyScript : MonoBehaviour {
 			if (collision.collider.gameObject.name.Contains("mermaid"))
 			{
 				mermaidObj = collision.collider.gameObject.GetComponent<mermaidScript>();
-				mermaidObj.current_health -= damage * 2; //karate is better against prax enemy unity
+				mermaidObj.current_health -= damage * 2; //karate is better against mermaid enemy unity
 				current_health -= mermaidObj.damage;
 
 				unitManagerScript.displayFlash (mermaidObj.transform.position, this.transform.position);

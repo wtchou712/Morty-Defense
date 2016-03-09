@@ -2,12 +2,11 @@
 using System.Collections;
 
 public class praxScript : MonoBehaviour {
-	//public AllyTowerScript tempScript = gameObject.AddComponent<AllyTowerScript>();
 	public AllyTowerScript tempScript;
-	public int current_health = 100;
-	public int damage = 5;
+	public int current_health = 40;
+	public int damage = 40;
 
-	public float speedFactor = -0.1f;
+	public float speedFactor = -0.2f;
 
 	// Use this for initialization
 	void Start () {

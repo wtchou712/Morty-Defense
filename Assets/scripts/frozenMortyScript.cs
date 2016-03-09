@@ -72,11 +72,13 @@ public class frozenMortyScript : MonoBehaviour {
 				mermaidObj.transform.position += new Vector3 (0.5f, 0f, 0f);
 				this.transform.position += new Vector3 (-0.5f, 0f, 0f);
 
+				collision.collider.gameObject.SendMessage ("slowMovementSpeed");
+
 				Dead();
 				if (mermaidObj.current_health <= 0) {
 					Destroy(collision.collider.gameObject);
 					unitManagerScript.enemyUnitKilled();
-					unitManagerScript.rewardGold (15);
+					unitManagerScript.rewardGold (30);
 				}
 
 			}
@@ -89,13 +91,15 @@ public class frozenMortyScript : MonoBehaviour {
 				unitManagerScript.displayFlash (goobObj.transform.position, this.transform.position);
 				goobObj.transform.position += new Vector3 (0.5f, 0f, 0f);
 				this.transform.position += new Vector3 (-0.5f, 0f, 0f);
+				collision.collider.gameObject.SendMessage ("slowMovementSpeed");
+
 
 				Dead();
 
 				if (goobObj.current_health <= 0) {
 					Destroy(collision.collider.gameObject);
 					unitManagerScript.enemyUnitKilled();
-					unitManagerScript.rewardGold (30);
+					unitManagerScript.rewardGold (50);
 				}
 
 			}
@@ -105,7 +109,6 @@ public class frozenMortyScript : MonoBehaviour {
 		{
 			tempScript = collision.collider.gameObject.GetComponent<EnemyTowerScript>();
 			tempScript.decreaseHealth(5f);
-			////debug.Log("Attacked enemy tower!");
 			this.transform.position += new Vector3 (-0.5f, 0f, 0f);
 			Destroy(gameObject);
 			unitManagerScript.displayFlash (this.transform.position, this.transform.position);

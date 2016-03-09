@@ -227,7 +227,7 @@ public class UnitManager : MonoBehaviour {
 
 	private void SpawnPrax(){ 
 		GameObject prax = GameObject.Instantiate(praxPrefab);
-		prax.transform.localScale = new Vector3(0.8f, 0.8f, 0.8f);
+		prax.transform.localScale = new Vector3(0.5f, 0.5f, 0.5f);
 		prax.transform.position = new Vector3(7, Random.Range(-3.8f, -4.2f), 0);
 	}
 	private void SpawnMermaid() {
@@ -238,7 +238,7 @@ public class UnitManager : MonoBehaviour {
 		
 	private void SpawnGoob() {
 		GameObject goob = GameObject.Instantiate(goobPrefab);
-		goob.transform.localScale = new Vector3(0.5f, 0.5f, 0.5f);
+		goob.transform.localScale = new Vector3(0.8f, 0.8f, 0.8f);
 		goob.transform.position = new Vector3(7, Random.Range (-3.8f, -4.2f), 0);
 	}
 
