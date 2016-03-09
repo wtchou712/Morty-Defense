@@ -77,6 +77,7 @@ public class UnitManager : MonoBehaviour {
 	public AudioClip towerDead; 
 	public AudioClip wahwah;
 	public AudioClip towerHit;
+	public AudioClip waveCompleteSnd;
 
 	public GameObject allyTower;
 	public AllyTowerScript allyTowerScript;
@@ -348,6 +349,7 @@ public class UnitManager : MonoBehaviour {
 	}
 
 	public void waveComplete(){
+		soundfx.PlayOneShot (waveCompleteSnd, 0.5f);
 		enemyDeathCount = 0; 
 		enemySpawnCount = 0; 
 		waveText.text = "Wave " + currentWave + " Completed";
