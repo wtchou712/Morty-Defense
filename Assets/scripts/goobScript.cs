@@ -3,8 +3,8 @@ using System.Collections;
 
 public class goobScript : MonoBehaviour {
 	public AllyTowerScript tempScript;
-	public int current_health = 80;
-	public int damage = 40;
+	public int current_health = 100;
+	public int damage = 20;
 
 	public float speedFactor = -0.5f;
 

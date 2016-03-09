@@ -10,8 +10,8 @@ public class shadowMortyScript : MonoBehaviour {
 	public mermaidScript mermaidObj;
 	public goobScript goobObj;
 
-	public int current_health = 40;
-	public int damage = 10;
+	public int current_health = 50;
+	public int damage = 30;
 
 	// Use this for initialization
 	void Start () {
@@ -29,26 +29,14 @@ public class shadowMortyScript : MonoBehaviour {
 	{
 		if (collision.gameObject.tag == "Enemy")
 		{
-			
+
+			//Shadow Morties avoid all enemy objects like flargo, prax, mermaid (smaller units) but not goob 
 			if (collision.collider.gameObject.name.Contains("flargo")) {
 				Physics.IgnoreCollision(collision.collider.gameObject.GetComponent<Collider>(),GetComponent<Collider>());
 			}
 			if (collision.collider.gameObject.name.Contains("prax"))
 			{
-				praxObj = collision.collider.gameObject.GetComponent<praxScript>();
-				praxObj.current_health -= damage;
-				current_health -= praxObj.damage;
-
-				unitManagerScript.displayFlash (praxObj.transform.position, this.transform.position);
-				praxObj.transform.position += new Vector3 (0.5f, 0f, 0f);
-				this.transform.position += new Vector3 (-0.5f, 0f, 0f);
-
-				Dead ();
-				if (praxObj.current_health <= 0) {
-					Destroy(collision.collider.gameObject);
-					unitManagerScript.enemyUnitKilled();
-					unitManagerScript.rewardGold (15);
-				}
+				Physics.IgnoreCollision(collision.collider.gameObject.GetComponent<Collider>(),GetComponent<Collider>());
 			}
 			if (collision.collider.gameObject.name.Contains("mermaid"))
 			{
@@ -57,7 +45,6 @@ public class shadowMortyScript : MonoBehaviour {
 
 			if (collision.collider.gameObject.name.Contains("goob"))
 			{
-				Debug.Log ("colliding with goob");
 				goobObj = collision.collider.gameObject.GetComponent<goobScript>();
 				goobObj.current_health -= damage;
 				current_health -= goobObj.damage;
@@ -81,7 +68,6 @@ public class shadowMortyScript : MonoBehaviour {
 		if (collision.collider.gameObject.name.Contains("Enemy Tower"))
 		{
 			tempScript = collision.collider.gameObject.GetComponent<EnemyTowerScript>();
-			tempScript.decreaseHealth(5f);
 			Debug.Log("Attacked enemy tower!");
 			this.transform.position += new Vector3 (-0.5f, 0f, 0f);
 			Destroy(gameObject);
