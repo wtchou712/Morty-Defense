@@ -63,7 +63,6 @@ public class UnitManager : MonoBehaviour {
 	public int shadowMortyCost = 50;
 	public int wrestlerMortyCost = 10;
 
-
 	double goldGenTime = 0;
 
 	public int currentWave = 1; 
@@ -72,9 +71,20 @@ public class UnitManager : MonoBehaviour {
 	public int enemyDeathCount = 0;
 	public int highestWave = 0;
 
+	public AudioSource soundfx;
+	public AudioClip mortySpawn;
+	public AudioClip bounce;
+	public AudioClip towerDead; 
+	public AudioClip wahwah;
+	public AudioClip towerHit;
+
+	public GameObject allyTower;
+	public AllyTowerScript allyTowerScript;
 
 	// Use this for initialization
 	void Start () {
+		soundfx = GetComponent<AudioSource>();
+		allyTowerScript = allyTower.GetComponent<AllyTowerScript> ();
 
 		regMortyBtn = new mortyButton(regMortyButton);
 		frozenMortyBtn = new mortyButton (frozenMortyButton);
@@ -115,6 +125,7 @@ public class UnitManager : MonoBehaviour {
 	}
 
 	public void Restart () {
+		allyTowerScript.restoreTower ();
 
 		var enemyUnits =  GameObject.FindGameObjectsWithTag ("Enemy");
 		var allyUnits = GameObject.FindGameObjectsWithTag ("Ally");
@@ -124,11 +135,11 @@ public class UnitManager : MonoBehaviour {
 		for(var i = 0 ; i < allyUnits.Length ; i ++)
 			Destroy(allyUnits[i]);
 
-		regMortyBtn = new mortyButton(regMortyButton);
-		frozenMortyBtn = new mortyButton (frozenMortyButton);
-		karateMortyBtn = new mortyButton (karateMortyButton);
-		shadowMortyBtn = new mortyButton (shadowMortyButton);
-		wrestlerMortyBtn = new mortyButton (wrestlerrMortyButton);
+//		regMortyBtn = new mortyButton(regMortyButton);
+//		frozenMortyBtn = new mortyButton (frozenMortyButton);
+//		karateMortyBtn = new mortyButton (karateMortyButton);
+//		shadowMortyBtn = new mortyButton (shadowMortyButton);
+//		wrestlerMortyBtn = new mortyButton (wrestlerrMortyButton);
 
 		unlockedFrozenMorty = false;
 		unlockedKarateMorty = false;
@@ -163,6 +174,9 @@ public class UnitManager : MonoBehaviour {
 
 		shadowMortyText = shadowMortyLabel.GetComponent<Text> ().text;
 		shadowMortyLabel.GetComponent<Text>().text = "Unlock with " + 2*shadowMortyCost + "G\nShadow Morty (4)\nAvoid enemy units\nStrong against all ";
+	
+		wrestlerMortyText = wrestlerMortyLabel.GetComponent<Text> ().text;
+		wrestlerMortyLabel.GetComponent<Text> ().text = "Unlock with " + 2*wrestlerMortyCost + "G\nWrestler Morty (5)\nHigh health\nMoves slow ";
 	}
 
 	public class mortyButton{
@@ -309,6 +323,7 @@ public class UnitManager : MonoBehaviour {
 	}
 
 	IEnumerator spawnDelay(mortyButton btn, int delayTime){
+		soundfx.PlayOneShot (mortySpawn, 0.5f);
 		setButton(btn, false);
 		yield return new WaitForSeconds(delayTime);
 		setButton (btn, true);
@@ -395,7 +410,8 @@ public class UnitManager : MonoBehaviour {
 			highestWave = currentWave;
 			waveText.text += " NEW HIGH SCORE!";
 		}
-
+		soundfx.PlayOneShot (towerDead, 0.5f);
+		soundfx.PlayOneShot (wahwah, 0.5f);
 		StopAllCoroutines ();
 
 	} 
@@ -461,6 +477,13 @@ public class UnitManager : MonoBehaviour {
 		Destroy (flash);
 	}
 		
+	public void playBounce(){
+		soundfx.PlayOneShot (bounce, 0.5f);	
+	}
+
+	public void playTowerHit(){
+		soundfx.PlayOneShot (towerHit, 0.5f);	
+	}
 
 
 }

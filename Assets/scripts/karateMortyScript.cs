@@ -115,6 +115,8 @@ public class karateMortyScript : MonoBehaviour {
 			unitManagerScript.rewardGold (250);
 		}
 			
+		unitManagerScript.playBounce ();
+			
 	}
 
 	void Dead() {

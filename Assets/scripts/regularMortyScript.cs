@@ -112,7 +112,8 @@ public class regularMortyScript : MonoBehaviour {
 			unitManagerScript.displayFlash (this.transform.position, this.transform.position);
 			unitManagerScript.rewardGold (250);
 		}
-			
+		unitManagerScript.playBounce ();
+
     }
 
 

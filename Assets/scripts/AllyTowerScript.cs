@@ -21,15 +21,20 @@ public class AllyTowerScript : MonoBehaviour {
 
 	public void decreaseHealth(float healthLost){
 		Debug.Log ("decreased HP");
+		unitManagerScript.playTowerHit ();
+		unitManagerScript.displayFlash (new Vector3(-7f, -4.0f, 0), new Vector3(-7f, -4.0f, 0));
 		currentHealth -= healthLost;
 		if (currentHealth <= 0) {
 			//Destroy (gameObject);
 			unitManagerScript.displayGameOver (false);
-			currentHealth = maxHealth;
-
 		}
 		float calculatedHealth = currentHealth / maxHealth;
 		setHealthBar (calculatedHealth);
+	}
+
+	public void restoreTower(){
+		currentHealth = maxHealth;
+		decreaseHealth (0);
 	}
 
 	public void setHealthBar(float myHealth){
