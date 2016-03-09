@@ -4,9 +4,9 @@ using System.Collections;
 public class mermaidScript : MonoBehaviour {
 	public AllyTowerScript tempScript;
 	public int current_health = 40;
-	public int damage = 40;
+	public int damage = 5;
 
-	public float speedFactor = -1.5f;
+	public float speedFactor = -0.7f;
 	// Use this for initialization
 	void Start () {
 		Physics.IgnoreLayerCollision (9, 9);

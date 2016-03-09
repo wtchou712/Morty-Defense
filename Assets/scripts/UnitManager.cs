@@ -60,9 +60,9 @@ public class UnitManager : MonoBehaviour {
 
 	public int regularMortyCost = 10;
 	public int frozenMortyCost = 20;
-	public int karateMortyCost = 30;
+	public int karateMortyCost = 35;
 	public int shadowMortyCost = 50;
-	public int wrestlerMortyCost = 10;
+	public int wrestlerMortyCost = 150;
 
 	double goldGenTime = 0;
 
@@ -102,16 +102,16 @@ public class UnitManager : MonoBehaviour {
 
 		//set the unlock message
 		frozenMortyText = frozenMortyLabel.GetComponent<Text> ().text;
-		frozenMortyLabel.GetComponent<Text>().text = "Unlock with " + 2*frozenMortyCost + "G\nFrozen Morty (2)\nSlow units for 2 seconds \nStrong against Flargo";
+		frozenMortyLabel.GetComponent<Text>().text = "Unlock with " + 3*frozenMortyCost + "G\nFrozen Morty (2)\nSlow units for 2s \nWeak against Prax";
 
 		karateMortyText = karateMortyLabel.GetComponent<Text> ().text;
-		karateMortyLabel.GetComponent<Text>().text = "Unlock with " + 2*karateMortyCost + "G\nKarate Morty (3)\nHigh damage\nSpeed ";
+		karateMortyLabel.GetComponent<Text>().text = "Unlock with " + 3*karateMortyCost + "G\nKarate Morty (3)\nHigh damage and Speed\nLow health ";
 
 		shadowMortyText = shadowMortyLabel.GetComponent<Text> ().text;
-		shadowMortyLabel.GetComponent<Text>().text = "Unlock with " + 2*shadowMortyCost + "G\nShadow Morty (4)\nAvoid enemy units\nStrong against all ";
+		shadowMortyLabel.GetComponent<Text>().text = "Unlock with " + 3*shadowMortyCost + "G\nShadow Morty (4)\nAvoids small units\nWeak against Goob";
 
 		wrestlerMortyText = wrestlerMortyLabel.GetComponent<Text> ().text;
-		wrestlerMortyLabel.GetComponent<Text> ().text = "Unlock with " + 2*wrestlerMortyCost + "G\nWrestler Morty (5)\nHigh health\nMoves slow ";
+		wrestlerMortyLabel.GetComponent<Text> ().text = "Unlock with " + 3*wrestlerMortyCost + "G\nWrestler Morty (5)\nHigh health\nSlow speed ";
 	}
 
 
@@ -163,16 +163,16 @@ public class UnitManager : MonoBehaviour {
 
 		//set the unlock message
 		frozenMortyText = frozenMortyLabel.GetComponent<Text> ().text;
-		frozenMortyLabel.GetComponent<Text>().text = "Unlock with " + 2*frozenMortyCost + "G\nFrozen Morty (2)\nSlow units for 2 seconds \nStrong against Flargo";
+		frozenMortyLabel.GetComponent<Text>().text = "Unlock with " + 3*frozenMortyCost + "G\nFrozen Morty (2)\nSlow units for 2 seconds \nStrong against Flargo";
 
 		karateMortyText = karateMortyLabel.GetComponent<Text> ().text;
-		karateMortyLabel.GetComponent<Text>().text = "Unlock with " + 2*karateMortyCost + "G\nKarate Morty (3)\nHigh damage\nSpeed ";
+		karateMortyLabel.GetComponent<Text>().text = "Unlock with " + 3*karateMortyCost + "G\nKarate Morty (3)\nHigh damage\nSpeed ";
 
 		shadowMortyText = shadowMortyLabel.GetComponent<Text> ().text;
-		shadowMortyLabel.GetComponent<Text>().text = "Unlock with " + 2*shadowMortyCost + "G\nShadow Morty (4)\nAvoid enemy units\nStrong against all ";
+		shadowMortyLabel.GetComponent<Text>().text = "Unlock with " + 3*shadowMortyCost + "G\nShadow Morty (4)\nAvoid enemy units\nStrong against all ";
 	
 		wrestlerMortyText = wrestlerMortyLabel.GetComponent<Text> ().text;
-		wrestlerMortyLabel.GetComponent<Text> ().text = "Unlock with " + 2*wrestlerMortyCost + "G\nWrestler Morty (5)\nHigh health\nMoves slow ";
+		wrestlerMortyLabel.GetComponent<Text> ().text = "Unlock with " + 3*wrestlerMortyCost + "G\nWrestler Morty (5)\nHigh health\nMoves slow ";
 	}
 
 	public class mortyButton{
@@ -222,24 +222,24 @@ public class UnitManager : MonoBehaviour {
     private void SpawnFlargo(){ 
 		GameObject flargo = GameObject.Instantiate(flargoPrefab);
 		flargo.transform.localScale = new Vector3(0.5f, 0.5f, 0.5f);
-		flargo.transform.position = new Vector3(7, Random.Range(-3.8f, -4.2f), 0);
+		flargo.transform.position = new Vector3(6.8f, Random.Range(-3.8f, -4.2f), 0);
     }
 
 	private void SpawnPrax(){ 
 		GameObject prax = GameObject.Instantiate(praxPrefab);
 		prax.transform.localScale = new Vector3(0.5f, 0.5f, 0.5f);
-		prax.transform.position = new Vector3(7, Random.Range(-3.8f, -4.2f), 0);
+		prax.transform.position = new Vector3(6.8f, Random.Range(-3.8f, -4.2f), 0);
 	}
 	private void SpawnMermaid() {
 		GameObject mermaid = GameObject.Instantiate(mermaidPrefab);
 		mermaid.transform.localScale = new Vector3(0.5f, 0.5f, 0.5f);
-		mermaid.transform.position = new Vector3(7, Random.Range (-3.8f, -4.2f), 0);
+		mermaid.transform.position = new Vector3(6.8f, Random.Range (-3.8f, -4.2f), 0);
 	}
 		
 	private void SpawnGoob() {
 		GameObject goob = GameObject.Instantiate(goobPrefab);
 		goob.transform.localScale = new Vector3(0.8f, 0.8f, 0.8f);
-		goob.transform.position = new Vector3(7, Random.Range (-3.8f, -4.2f), 0);
+		goob.transform.position = new Vector3(6.8f, Random.Range (-3.8f, -4.2f), 0);
 	}
 
 	private void generateGold() { 
@@ -254,67 +254,67 @@ public class UnitManager : MonoBehaviour {
 		//if button pressed and gold greater > unit cost, spawn unit 
 		if (gold >= regularMortyCost) {
 			SpawnRegularMorty ();
-			StartCoroutine(spawnDelay(regMortyBtn, 1));
+			StartCoroutine(spawnDelay(regMortyBtn, 2));
 		}
     }
 
 	public void frozenMortyClick(){
 		if (!unlockedFrozenMorty) { //unlock frozen morty
-			if (gold >= 2 * frozenMortyCost) {
+			if (gold >= 3 * frozenMortyCost) {
 				unlockedFrozenMorty = true; 
-				gold -= 2 * frozenMortyCost;
+				gold -= 3 * frozenMortyCost;
 				frozenMortyBtn.btn.interactable = true;
 				frozenMortyLabel.GetComponent<Text> ().text = frozenMortyText;
 			}
 		}
 		else if (gold >= frozenMortyCost){
 			SpawnFrozenMorty ();
-			StartCoroutine (spawnDelay (frozenMortyBtn, 3));
+			StartCoroutine (spawnDelay (frozenMortyBtn, 4));
 		}
 	}
 
 	public void karateMortyClick(){
 		if (!unlockedKarateMorty) { //unlock frozen morty
-			if (gold >= 2 * karateMortyCost) {
+			if (gold >= 3 * karateMortyCost) {
 				unlockedKarateMorty = true; 
-				gold -= 2 * karateMortyCost;
+				gold -= 3 * karateMortyCost;
 				karateMortyBtn.btn.interactable = true;
 				karateMortyLabel.GetComponent<Text> ().text = karateMortyText;
 			}
 		}
 		else if (gold >= karateMortyCost){
 			SpawnKarateMorty ();
-			StartCoroutine (spawnDelay (karateMortyBtn, 5));
+			StartCoroutine (spawnDelay (karateMortyBtn, 6));
 		}
 	}
 
 	public void shadowMortyClick(){
 		if (!unlockedShadowMorty) { //unlock frozen morty
-			if (gold >= 2 * shadowMortyCost) {
+			if (gold >= 3 * shadowMortyCost) {
 				unlockedShadowMorty = true; 
-				gold -= 2 * shadowMortyCost;
+				gold -= 3 * shadowMortyCost;
 				shadowMortyBtn.btn.interactable = true;
 				shadowMortyLabel.GetComponent<Text> ().text = shadowMortyText;
 			}
 		}
 		else if (gold >= shadowMortyCost){
 			SpawnShadowMorty ();
-			StartCoroutine (spawnDelay (shadowMortyBtn, 7));
+			StartCoroutine (spawnDelay (shadowMortyBtn, 9));
 		}
 	}
 
 	public void wrestlerMortyClick(){
 		if (!unlockedWrestlerMorty) { //unlock frozen morty
-			if (gold >= 2 * wrestlerMortyCost) {
+			if (gold >= 3 * wrestlerMortyCost) {
 				unlockedWrestlerMorty = true; 
-				gold -= 2 * wrestlerMortyCost;
+				gold -= 3 * wrestlerMortyCost;
 				wrestlerMortyBtn.btn.interactable = true;
 				wrestlerMortyLabel.GetComponent<Text> ().text = wrestlerMortyText;
 			}
 		}
 		else if (gold >= wrestlerMortyCost){
 			SpawnWrestlerMorty ();
-			StartCoroutine (spawnDelay (wrestlerMortyBtn, 5));
+			StartCoroutine (spawnDelay (wrestlerMortyBtn, 15));
 		}
 	}
 
@@ -369,12 +369,12 @@ public class UnitManager : MonoBehaviour {
 		//enemyUnits = currentWave * 10
 		//random(1, currentWave) for which enemy to spawn
 		int clusterCount = 0;
-		int unitID = Random.Range(1, currentWave + 1);
-		while (enemySpawnCount < currentWave * 9) {
+		int unitID = Random.Range(1, System.Math.Min (currentWave + 1, 5));
+		while (enemySpawnCount < currentWave * 6) {
 			if (clusterCount == 3) {
 				clusterCount = 0;
-				unitID = Random.Range(1, currentWave + 1);
-				yield return new WaitForSeconds(6);
+				unitID = Random.Range (1, System.Math.Min (currentWave + 1, 5));
+				yield return new WaitForSeconds(2);
 			}
 			if (unitID == 1) {
 				SpawnFlargo ();
@@ -386,7 +386,7 @@ public class UnitManager : MonoBehaviour {
 				SpawnGoob ();
 			}
 
-			yield return new WaitForSeconds(2);
+			yield return new WaitForSeconds(1);
 			clusterCount++;
 			enemySpawnCount++;
 		}

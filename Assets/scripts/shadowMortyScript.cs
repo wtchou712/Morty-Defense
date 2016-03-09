@@ -10,8 +10,8 @@ public class shadowMortyScript : MonoBehaviour {
 	public mermaidScript mermaidObj;
 	public goobScript goobObj;
 
-	public int current_health = 50;
-	public int damage = 30;
+	public int current_health = 30;
+	public int damage = 15;
 
 	// Use this for initialization
 	void Start () {
@@ -22,7 +22,7 @@ public class shadowMortyScript : MonoBehaviour {
 
 	// Update is called once per frame
 	void Update () {
-		this.transform.Translate (new Vector3 (0.4f * Time.deltaTime, 0f, 0f));
+		this.transform.Translate (new Vector3 (0.65f * Time.deltaTime, 0f, 0f));
 	}
 
 	void OnCollisionEnter(Collision collision)
@@ -58,7 +58,7 @@ public class shadowMortyScript : MonoBehaviour {
 				if (goobObj.current_health <= 0) {
 					Destroy(collision.collider.gameObject);
 					unitManagerScript.enemyUnitKilled();
-					unitManagerScript.rewardGold (30);
+					unitManagerScript.rewardGold (35);
 				}
 
 			}
@@ -72,7 +72,7 @@ public class shadowMortyScript : MonoBehaviour {
 			this.transform.position += new Vector3 (-0.5f, 0f, 0f);
 			Destroy(gameObject);
 			unitManagerScript.displayFlash (this.transform.position, this.transform.position);
-			unitManagerScript.rewardGold (250);
+			unitManagerScript.rewardGold (50);
 		}
 		unitManagerScript.playBounce ();
 	}

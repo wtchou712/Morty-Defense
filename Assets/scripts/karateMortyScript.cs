@@ -9,8 +9,8 @@ public class karateMortyScript : MonoBehaviour {
 	public mermaidScript mermaidObj;
 	public goobScript goobObj;
 
-	public int current_health = 40;
-	public int damage = 25;
+	public int current_health = 30;
+	public int damage = 20;
 
 	// Use this for initialization
 	void Start () {
@@ -20,7 +20,7 @@ public class karateMortyScript : MonoBehaviour {
 
 	// Update is called once per frame
 	void Update () {
-		this.transform.Translate (new Vector3 (0.6f * Time.deltaTime, 0f, 0f));
+		this.transform.Translate (new Vector3 (0.8f * Time.deltaTime, 0f, 0f));
 	}
 
 	void OnCollisionEnter(Collision collision)
@@ -41,7 +41,7 @@ public class karateMortyScript : MonoBehaviour {
 				if (flargoObj.current_health <= 0) {
 					Destroy(collision.collider.gameObject);
 					unitManagerScript.enemyUnitKilled();
-					unitManagerScript.rewardGold (10);
+					unitManagerScript.rewardGold (5);
 				}
 
 			}
@@ -59,7 +59,7 @@ public class karateMortyScript : MonoBehaviour {
 				if (praxObj.current_health <= 0) {
 					Destroy(collision.collider.gameObject);
 					unitManagerScript.enemyUnitKilled();
-					unitManagerScript.rewardGold (15);
+					unitManagerScript.rewardGold (10);
 				}
 
 			}
@@ -78,7 +78,7 @@ public class karateMortyScript : MonoBehaviour {
 				if (mermaidObj.current_health <= 0) {
 					Destroy(collision.collider.gameObject);
 					unitManagerScript.enemyUnitKilled();
-					unitManagerScript.rewardGold (15);
+					unitManagerScript.rewardGold (10);
 				}
 
 			}
@@ -98,7 +98,7 @@ public class karateMortyScript : MonoBehaviour {
 				if (goobObj.current_health <= 0) {
 					Destroy(collision.collider.gameObject);
 					unitManagerScript.enemyUnitKilled();
-					unitManagerScript.rewardGold (30);
+					unitManagerScript.rewardGold (35);
 				}
 
 			}
@@ -110,7 +110,7 @@ public class karateMortyScript : MonoBehaviour {
 			this.transform.position += new Vector3 (-0.5f, 0f, 0f);
 			Destroy(gameObject);
 			unitManagerScript.displayFlash (this.transform.position, this.transform.position);
-			unitManagerScript.rewardGold (250);
+			unitManagerScript.rewardGold (35);
 		}
 			
 		unitManagerScript.playBounce ();

@@ -9,7 +9,7 @@ public class frozenMortyScript : MonoBehaviour {
 	public mermaidScript mermaidObj;
 	public goobScript goobObj;
 
-	public int current_health = 40;
+	public int current_health = 50;
 	public int damage = 5;
 
 	// Use this for initialization
@@ -20,7 +20,7 @@ public class frozenMortyScript : MonoBehaviour {
 
 	// Update is called once per frame
 	void Update () {
-		this.transform.Translate (new Vector3 (0.4f * Time.deltaTime, 0f, 0f));
+		this.transform.Translate (new Vector3 (0.65f * Time.deltaTime, 0f, 0f));
 	}
 
 	void OnCollisionEnter(Collision collision)
@@ -42,7 +42,7 @@ public class frozenMortyScript : MonoBehaviour {
 				if (flargoObj.current_health <= 0) {
 					Destroy(collision.collider.gameObject);
 					unitManagerScript.enemyUnitKilled();
-					unitManagerScript.rewardGold (10);
+					unitManagerScript.rewardGold (5);
 				}
 			}
 			if (collision.collider.gameObject.name.Contains("prax"))
@@ -59,7 +59,7 @@ public class frozenMortyScript : MonoBehaviour {
 				if (praxObj.current_health <= 0) {
 					Destroy(collision.collider.gameObject);
 					unitManagerScript.enemyUnitKilled();
-					unitManagerScript.rewardGold (15);
+					unitManagerScript.rewardGold (10);
 				}
 			}
 			if (collision.collider.gameObject.name.Contains("mermaid"))
@@ -78,7 +78,7 @@ public class frozenMortyScript : MonoBehaviour {
 				if (mermaidObj.current_health <= 0) {
 					Destroy(collision.collider.gameObject);
 					unitManagerScript.enemyUnitKilled();
-					unitManagerScript.rewardGold (30);
+					unitManagerScript.rewardGold (10);
 				}
 
 			}
@@ -99,7 +99,7 @@ public class frozenMortyScript : MonoBehaviour {
 				if (goobObj.current_health <= 0) {
 					Destroy(collision.collider.gameObject);
 					unitManagerScript.enemyUnitKilled();
-					unitManagerScript.rewardGold (50);
+					unitManagerScript.rewardGold (35);
 				}
 
 			}
@@ -111,7 +111,7 @@ public class frozenMortyScript : MonoBehaviour {
 			this.transform.position += new Vector3 (-0.5f, 0f, 0f);
 			Destroy(gameObject);
 			unitManagerScript.displayFlash (this.transform.position, this.transform.position);
-			unitManagerScript.rewardGold (250);
+			unitManagerScript.rewardGold (25);
 		}
 		unitManagerScript.playBounce ();
 

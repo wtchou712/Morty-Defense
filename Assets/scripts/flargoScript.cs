@@ -6,7 +6,7 @@ public class flargoScript : MonoBehaviour {
 	public int current_health = 20;
 	public int damage = 5;
 
-	public float speedFactor = -1.0f;
+	public float speedFactor = -0.5f;
 	// Use this for initialization
 	void Start () {
 		Physics.IgnoreLayerCollision (9, 9);

@@ -3,10 +3,10 @@ using System.Collections;
 
 public class praxScript : MonoBehaviour {
 	public AllyTowerScript tempScript;
-	public int current_health = 40;
-	public int damage = 40;
+	public int current_health = 50;
+	public int damage = 10;
 
-	public float speedFactor = -0.2f;
+	public float speedFactor = -0.5f;
 
 	// Use this for initialization
 	void Start () {
