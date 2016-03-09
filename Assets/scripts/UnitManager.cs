@@ -32,7 +32,7 @@ public class UnitManager : MonoBehaviour {
 	public Button frozenMortyButton;
 	public Button karateMortyButton;
 	public Button shadowMortyButton;
-	public Button wrestlerrMortyButton;
+	public Button wrestlerMortyButton;
 
 	public mortyButton regMortyBtn;
 	public mortyButton frozenMortyBtn;
@@ -55,6 +55,7 @@ public class UnitManager : MonoBehaviour {
 	public static int gold; 
 	public Text goldText;
 	public Text currentWaveText;
+	public Text highScoreText;
 	public float SpawnDistance = 50; 
 
 	public int regularMortyCost = 10;
@@ -91,7 +92,7 @@ public class UnitManager : MonoBehaviour {
 		frozenMortyBtn = new mortyButton (frozenMortyButton);
 		karateMortyBtn = new mortyButton (karateMortyButton);
 		shadowMortyBtn = new mortyButton (shadowMortyButton);
-		wrestlerMortyBtn = new mortyButton (wrestlerrMortyButton);
+		wrestlerMortyBtn = new mortyButton (wrestlerMortyButton);
 
 		gold = 30;
 
@@ -139,7 +140,7 @@ public class UnitManager : MonoBehaviour {
 		unlockedFrozenMorty = false;
 		unlockedKarateMorty = false;
 		unlockedShadowMorty = false;
-		unlockedWrestlerMorty = true;
+		unlockedWrestlerMorty = false;
 
 		regMortyCooldown = false; 
 		frozenMortyCooldown = false; 
@@ -392,19 +393,16 @@ public class UnitManager : MonoBehaviour {
 	}
 
 	public void displayGameOver(bool win){
-		if (win) {
-			waveText.text = "Player wins!";
-		} 
-		else {
-			waveText.text = "Game over!"; 
-		}
+		waveText.text = "Game Over!";
 		waveText.enabled = true;
 		gameOver = true;
 		restartButton.gameObject.SetActive (true);
 		Time.timeScale = 0.0f;
 		if (currentWave > highestWave) {
 			highestWave = currentWave;
-			waveText.text += " NEW HIGH SCORE!";
+			waveText.text = "Game Over! NEW HIGH SCORE!";
+			highScoreText.text = "High Score: Wave " + highestWave;
+
 		}
 		soundfx.PlayOneShot (towerDead, 0.5f);
 		soundfx.PlayOneShot (wahwah, 0.5f);
