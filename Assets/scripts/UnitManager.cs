@@ -8,6 +8,7 @@ public class UnitManager : MonoBehaviour {
     public GameObject flargoPrefab;
 	public GameObject frozenMortyPrefab;
 	public GameObject karateMortyPrefab;
+	public GameObject wrestlerMortyPrefab;
 	public GameObject praxPrefab;
 	public GameObject mermaidPrefab;
 	public GameObject shadowPrefab;
@@ -17,6 +18,7 @@ public class UnitManager : MonoBehaviour {
 	public bool unlockedFrozenMorty = false;
 	public bool unlockedKarateMorty = false;
 	public bool unlockedShadowMorty = false;
+	public bool unlockedWrestlerMorty = false;
 
 	public bool regMortyCooldown = false; 
 	public bool frozenMortyCooldown = false; 
@@ -30,20 +32,24 @@ public class UnitManager : MonoBehaviour {
 	public Button frozenMortyButton;
 	public Button karateMortyButton;
 	public Button shadowMortyButton;
+	public Button wrestlerrMortyButton;
 
 	public mortyButton regMortyBtn;
 	public mortyButton frozenMortyBtn;
 	public mortyButton karateMortyBtn;
 	public mortyButton shadowMortyBtn;
+	public mortyButton wrestlerMortyBtn;
 
 	public GameObject regMortyLabel;
 	public GameObject frozenMortyLabel;
 	public GameObject karateMortyLabel;
 	public GameObject shadowMortyLabel;
+	public GameObject wrestlerMortyLabel;
 
 	public string frozenMortyText; 
 	public string karateMortyText;
 	public string shadowMortyText;
+	public string wrestlerMortyText;
 
 	//made gold a static variable 
 	public static int gold; 
@@ -55,6 +61,7 @@ public class UnitManager : MonoBehaviour {
 	public int frozenMortyCost = 20;
 	public int karateMortyCost = 30;
 	public int shadowMortyCost = 50;
+	public int wrestlerMortyCost = 10;
 
 
 	double goldGenTime = 0;
@@ -73,6 +80,7 @@ public class UnitManager : MonoBehaviour {
 		frozenMortyBtn = new mortyButton (frozenMortyButton);
 		karateMortyBtn = new mortyButton (karateMortyButton);
 		shadowMortyBtn = new mortyButton (shadowMortyButton);
+		wrestlerMortyBtn = new mortyButton (wrestlerrMortyButton);
 
 		gold = 30;
 
@@ -89,6 +97,9 @@ public class UnitManager : MonoBehaviour {
 
 		shadowMortyText = shadowMortyLabel.GetComponent<Text> ().text;
 		shadowMortyLabel.GetComponent<Text>().text = "Unlock with " + 2*shadowMortyCost + "G\nShadow Morty (4)\nAvoid enemy units\nStrong against all ";
+
+		wrestlerMortyText = wrestlerMortyLabel.GetComponent<Text> ().text;
+		wrestlerMortyLabel.GetComponent<Text> ().text = "Unlock with " + 2*wrestlerMortyCost + "G\nWrestler Morty (5)\nHigh health\nMoves slow ";
 	}
 
 
@@ -117,10 +128,12 @@ public class UnitManager : MonoBehaviour {
 		frozenMortyBtn = new mortyButton (frozenMortyButton);
 		karateMortyBtn = new mortyButton (karateMortyButton);
 		shadowMortyBtn = new mortyButton (shadowMortyButton);
+		wrestlerMortyBtn = new mortyButton (wrestlerrMortyButton);
 
 		unlockedFrozenMorty = false;
 		unlockedKarateMorty = false;
 		unlockedShadowMorty = false;
+		unlockedWrestlerMorty = true;
 
 		regMortyCooldown = false; 
 		frozenMortyCooldown = false; 
@@ -187,6 +200,13 @@ public class UnitManager : MonoBehaviour {
 		shadowMorty.transform.localScale = new Vector3 (-0.5f, 0.5f, 0.5f);
 		shadowMorty.transform.position = new Vector3 (-7, Random.Range (-3.8f, -4.2f), 0);
 		gold -= shadowMortyCost;
+	}
+
+	private void SpawnWrestlerMorty(){
+		GameObject wrestlerMorty = GameObject.Instantiate (wrestlerMortyPrefab);
+		wrestlerMorty.transform.localScale = new Vector3 (-0.8f, 0.8f, 0.8f);
+		wrestlerMorty.transform.position = new Vector3 (-7, Random.Range (-3.8f, -4.2f), 0);
+		gold -= wrestlerMortyCost;
 	}
 
     private void SpawnFlargo(){ 
@@ -270,6 +290,21 @@ public class UnitManager : MonoBehaviour {
 		else if (gold >= shadowMortyCost){
 			SpawnShadowMorty ();
 			StartCoroutine (spawnDelay (shadowMortyBtn, 7));
+		}
+	}
+
+	public void wrestlerMortyClick(){
+		if (!unlockedWrestlerMorty) { //unlock frozen morty
+			if (gold >= 2 * wrestlerMortyCost) {
+				unlockedWrestlerMorty = true; 
+				gold -= 2 * wrestlerMortyCost;
+				wrestlerMortyBtn.btn.interactable = true;
+				wrestlerMortyLabel.GetComponent<Text> ().text = wrestlerMortyText;
+			}
+		}
+		else if (gold >= wrestlerMortyCost){
+			SpawnWrestlerMorty ();
+			StartCoroutine (spawnDelay (wrestlerMortyBtn, 5));
 		}
 	}
 
@@ -378,6 +413,9 @@ public class UnitManager : MonoBehaviour {
 		if(Input.GetButtonDown("SpawnShadowMorty") && (shadowMortyBtn.btn.interactable == true || !unlockedShadowMorty)){
 			shadowMortyClick();
 		}
+		if(Input.GetButtonDown("SpawnWrestlerMorty") && (wrestlerMortyBtn.btn.interactable == true || !unlockedWrestlerMorty)){
+			wrestlerMortyClick();
+		}
 	}
 		
 
@@ -402,6 +440,11 @@ public class UnitManager : MonoBehaviour {
 			shadowMortyBtn.btn.interactable = false; 
 		} else {
 			shadowMortyBtn.btn.interactable = true;
+		}
+		if (gold < wrestlerMortyCost || !unlockedWrestlerMorty || wrestlerMortyBtn.cooldown) {
+			wrestlerMortyBtn.btn.interactable = false; 
+		} else {
+			wrestlerMortyBtn.btn.interactable = true;
 		}
 	}
 
