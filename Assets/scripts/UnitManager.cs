@@ -381,7 +381,6 @@ public class UnitManager : MonoBehaviour {
 			} else if (unitID == 4) {
 				SpawnGoob ();
 			}
-
 			yield return new WaitForSeconds(1);
 			clusterCount++;
 			enemySpawnCount++;

@@ -4,7 +4,7 @@ using System.Collections;
 public class praxScript : MonoBehaviour {
 	public AllyTowerScript tempScript;
 	public int current_health = 50;
-	public int damage = 10;
+	public int damage = 30;
 
 	public float speedFactor = -0.5f;
 

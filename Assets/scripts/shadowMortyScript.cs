@@ -11,7 +11,7 @@ public class shadowMortyScript : MonoBehaviour {
 	public goobScript goobObj;
 
 	public int current_health = 30;
-	public int damage = 15;
+	public int damage = 10;
 
 	// Use this for initialization
 	void Start () {

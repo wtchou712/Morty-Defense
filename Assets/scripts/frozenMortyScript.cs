@@ -29,7 +29,7 @@ public class frozenMortyScript : MonoBehaviour {
 		{
 			if (collision.collider.gameObject.name.Contains("flargo")) {
 				flargoObj = collision.collider.gameObject.GetComponent<flargoScript>();
-				flargoObj.current_health -= damage * 2; //frozen morty is better against flargo
+				flargoObj.current_health -= damage; //frozen morty is better against flargo
 				current_health -= flargoObj.damage;
 
 				unitManagerScript.displayFlash (flargoObj.transform.position, this.transform.position);
