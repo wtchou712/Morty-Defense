@@ -1,6 +1,14 @@
-# Morty-Defense
-Rick n' Morty Defense Game
+README - Morty Defense
+W.E.T Developers
 
-William Chou
-Edward Hu
-Ted Wu
+Game Objective: Beat as many waves as possible by spawning Morty units to defeat each wave.
+
+Press 1, 2, 3, 4, or 5 to unlock/spawn units.
+
+1: Regular Morty
+2: Frozen Morty
+3: Karate Morty
+4: Shadow Morty
+5: Wrestler Morty
+
+
