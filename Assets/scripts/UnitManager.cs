@@ -162,17 +162,13 @@ public class UnitManager : MonoBehaviour {
 		StartCoroutine(spawnWave());
 
 		//set the unlock message
-		frozenMortyText = frozenMortyLabel.GetComponent<Text> ().text;
-		frozenMortyLabel.GetComponent<Text>().text = "Unlock with " + 3*frozenMortyCost + "G\nFrozen Morty (2)\nSlow units for 2 seconds \nStrong against Flargo";
+		frozenMortyLabel.GetComponent<Text>().text = "Unlock with " + 3*frozenMortyCost + "G\nFrozen Morty (2)\nSlow units for 2s \nWeak against Prax";
 
-		karateMortyText = karateMortyLabel.GetComponent<Text> ().text;
-		karateMortyLabel.GetComponent<Text>().text = "Unlock with " + 3*karateMortyCost + "G\nKarate Morty (3)\nHigh damage\nSpeed ";
+		karateMortyLabel.GetComponent<Text>().text = "Unlock with " + 3*karateMortyCost + "G\nKarate Morty (3)\nHigh damage and Speed\nLow health ";
 
-		shadowMortyText = shadowMortyLabel.GetComponent<Text> ().text;
-		shadowMortyLabel.GetComponent<Text>().text = "Unlock with " + 3*shadowMortyCost + "G\nShadow Morty (4)\nAvoid enemy units\nStrong against all ";
-	
-		wrestlerMortyText = wrestlerMortyLabel.GetComponent<Text> ().text;
-		wrestlerMortyLabel.GetComponent<Text> ().text = "Unlock with " + 3*wrestlerMortyCost + "G\nWrestler Morty (5)\nHigh health\nMoves slow ";
+		shadowMortyLabel.GetComponent<Text>().text = "Unlock with " + 3*shadowMortyCost + "G\nShadow Morty (4)\nAvoids small units\nWeak against Goob";
+
+		wrestlerMortyLabel.GetComponent<Text> ().text = "Unlock with " + 3*wrestlerMortyCost + "G\nWrestler Morty (5)\nHigh health\nSlow speed ";
 	}
 
 	public class mortyButton{
